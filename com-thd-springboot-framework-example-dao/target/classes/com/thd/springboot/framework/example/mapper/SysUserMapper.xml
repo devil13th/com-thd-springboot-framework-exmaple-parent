@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.thd.springboot.framework.example.mapper.SysUserMapper">
+    <sql id="BASE_TABLE">
+        sys_user
+    </sql>
+    <sql id="BASE_COLUMN">
+        user_id,user_name,user_mail,user_sex,user_birthday
+    </sql>
+
+
+
+    <insert id="insert" parameterType="SysUser" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
+        INSERT INTO <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            user_id,user_name,user_mail,user_birthday,
+            <if test="userSex!=null">
+                user_sex
+            </if>
+        </trim>
+        <trim prefix=" VALUE(" suffix=")" suffixOverrides=",">
+            #{userId},#{userName,jdbcType=VARCHAR},#{userMail},#{userBirthday,jdbcType=DATE},
+            <if test="userSex!=null">
+                #{userSex}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectById" resultType="SysUser">
+        select
+        <include refid="BASE_COLUMN"/>
+        from
+        <include refid="BASE_TABLE"/>
+        where user_id=#{id}
+    </select>
+
+    <select id="selectAll" resultType="SysUser">
+        select
+        <include refid="BASE_COLUMN"/>
+        from
+        <include refid="BASE_TABLE"/>
+    </select>
+
+    <select id="queryByName" resultType="SysUser" parameterType="string">
+        select
+        <include refid="BASE_COLUMN"/>
+        from
+        <include refid="BASE_TABLE"/>
+        <if test="name != null and name != ''">
+            <where>
+                user_name like concat('%',#{name},'%')
+            </where>
+        </if>
+    </select>
+
+
+    <select id="selectAllForMap" resultType="map">
+        select
+        <include refid="BASE_COLUMN"/>
+        from
+        <include refid="BASE_TABLE"/>
+    </select>
+
+    <insert id="insertBatch" >
+        insert into sys_user
+        (
+            user_id,
+            user_name,
+            user_sex,
+            user_mail,
+            user_tel,
+            user_birthday,
+            user_status,
+            org_id
+        )
+        values
+        <foreach collection="list" item="r" index="index" separator=",">
+            (
+                #{r.userId},
+                #{r.userName},
+                #{r.userSex},
+                #{r.userMail},
+                #{r.userTel},
+                #{r.userBirthday},
+                #{r.userStatus},
+                #{r.orgId}
+            )
+        </foreach>
+    </insert>
+
+
+    <select id="selectin" resultType="SysUser">
+        select
+        <include refid="BASE_COLUMN"/>
+        from
+        <include refid="BASE_TABLE"/>
+        <if test="list != null and list.size() > 0">
+            <where>
+                user_name in (
+                    <foreach collection="list" item="r" index="index" separator=",">
+                        #{r}
+                    </foreach>
+                )
+            </where>
+        </if>
+    </select>
+
+
+    <select id="selectAllForMapKey" resultType="SysUser">
+        select
+        <include refid="BASE_COLUMN"/>
+        from
+        <include refid="BASE_TABLE"/>
+    </select>
+
+    <select id="queryCount" resultType="int">
+        select count(1) from sys_user
+        <if test="userName != null and userName != '' ">
+            <where>
+                user_name like concat('%',#{userName},'%')
+            </where>
+        </if>
+    </select>
+
+
+</mapper>
