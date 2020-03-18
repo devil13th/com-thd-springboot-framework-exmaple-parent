@@ -29,6 +29,7 @@ public class SysUserController extends BasicController {
 
     @RequestMapping("/queryAll")
     @ResponseBody
+    //url : http://127.0.0.1:8899/thd/sysUser/queryAll
     public Message queryAll(){
         List<SysUser> l = this.sysUserService.getAll();
         return Message.success(l);

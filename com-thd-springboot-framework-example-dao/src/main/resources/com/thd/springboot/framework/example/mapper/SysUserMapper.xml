@@ -34,7 +34,7 @@
         where user_id=#{id}
     </select>
 
-    <select id="selectAll" resultType="SysUser">
+    <select id="selectAll" resultType="com.thd.springboot.framework.example.entity.SysUser">
         select
         <include refid="BASE_COLUMN"/>
         from

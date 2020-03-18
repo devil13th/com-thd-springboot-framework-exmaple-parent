@@ -1,6 +1,5 @@
 package com.thd.springboot.framework.example.entity;
 
-import com.oracle.webservices.internal.api.databinding.DatabindingMode;
 import com.thd.springboot.framework.db.entity.BasicEntity;
 import lombok.Data;
 
