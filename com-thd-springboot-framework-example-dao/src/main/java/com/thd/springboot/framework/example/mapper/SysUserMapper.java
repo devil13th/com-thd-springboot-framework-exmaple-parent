@@ -34,10 +34,10 @@ public interface SysUserMapper {
     List<Map<String,String>> selectAllForMap();
 
     // 批量插入
-    void insertBatch(@Param(value = "list") List<SysUser> list);
+    void insertBatch(@Param(value="list") List<SysUser> list);
 
     // in 查询
-    List<SysUser> selectin(@Param(value = "list") List<String> list);
+    List<SysUser> selectin(@Param(value="list") List<String> list);
 
     // 返回map, key为指定属性，value为实体类结果集
     @MapKey("userId")  // 指定key属性取哪列
@@ -47,5 +47,16 @@ public interface SysUserMapper {
     Integer queryCount(@Param("userName") String userName);
 
     // 根据姓名查询用户
-    public List<SysUser> queryByName(@Param(value = "name") String name);
+    public List<SysUser> queryByName(@Param(value="name") String name);
+
+
+    // mapper的最小配置参数 - 统计返回某唯一一个值
+    Integer configByMinParams(@Param("userName") String userName);
+
+    //  mapper的最小配置参数 - 返回列表  泛型为Map
+    List<Map<String,String>> configByMinParams01(SysUser user);
+
+
+    //  mapper的最小配置参数 - 返回列表 泛型为实体对象
+    List<SysUser> configByMinParams02(SysUser user);
 }

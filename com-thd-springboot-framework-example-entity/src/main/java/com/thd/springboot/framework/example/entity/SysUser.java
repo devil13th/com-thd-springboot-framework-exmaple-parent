@@ -1,5 +1,6 @@
 package com.thd.springboot.framework.example.entity;
 
+import com.github.pagehelper.Page;
 import com.thd.springboot.framework.db.entity.BasicEntity;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import java.util.Date;
  * @author devil13th
  **/
 @Data
-public class SysUser extends BasicEntity {
+public class SysUser {
     private String userId;
     private String userName;
     private int userSex;

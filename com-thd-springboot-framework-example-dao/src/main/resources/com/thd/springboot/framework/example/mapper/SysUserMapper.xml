@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
 <mapper namespace="com.thd.springboot.framework.example.mapper.SysUserMapper">
+
+
     <sql id="BASE_TABLE">
         sys_user
     </sql>
@@ -10,7 +13,7 @@
 
 
 
-    <insert id="insert" parameterType="SysUser" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
+    <insert id="insert" parameterType="com.thd.springboot.framework.example.entity.SysUser" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
         INSERT INTO <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
             user_id,user_name,user_mail,user_birthday,
@@ -26,7 +29,7 @@
         </trim>
     </insert>
 
-    <select id="selectById" resultType="SysUser">
+    <select id="selectById" resultType="com.thd.springboot.framework.example.entity.SysUser">
         select
         <include refid="BASE_COLUMN"/>
         from
@@ -41,7 +44,7 @@
         <include refid="BASE_TABLE"/>
     </select>
 
-    <select id="queryByName" resultType="SysUser" parameterType="string">
+    <select id="queryByName" resultType="com.thd.springboot.framework.example.entity.SysUser" parameterType="string">
         select
         <include refid="BASE_COLUMN"/>
         from
@@ -64,32 +67,32 @@
     <insert id="insertBatch" >
         insert into sys_user
         (
-            user_id,
-            user_name,
-            user_sex,
-            user_mail,
-            user_tel,
-            user_birthday,
-            user_status,
-            org_id
+        user_id,
+        user_name,
+        user_sex,
+        user_mail,
+        user_tel,
+        user_birthday,
+        user_status,
+        org_id
         )
         values
         <foreach collection="list" item="r" index="index" separator=",">
             (
-                #{r.userId},
-                #{r.userName},
-                #{r.userSex},
-                #{r.userMail},
-                #{r.userTel},
-                #{r.userBirthday},
-                #{r.userStatus},
-                #{r.orgId}
+            #{r.userId},
+            #{r.userName},
+            #{r.userSex},
+            #{r.userMail},
+            #{r.userTel},
+            #{r.userBirthday},
+            #{r.userStatus},
+            #{r.orgId}
             )
         </foreach>
     </insert>
 
 
-    <select id="selectin" resultType="SysUser">
+    <select id="selectin" resultType="com.thd.springboot.framework.example.entity.SysUser">
         select
         <include refid="BASE_COLUMN"/>
         from
@@ -97,16 +100,16 @@
         <if test="list != null and list.size() > 0">
             <where>
                 user_name in (
-                    <foreach collection="list" item="r" index="index" separator=",">
-                        #{r}
-                    </foreach>
+                <foreach collection="list" item="r" index="index" separator=",">
+                    #{r}
+                </foreach>
                 )
             </where>
         </if>
     </select>
 
 
-    <select id="selectAllForMapKey" resultType="SysUser">
+    <select id="selectAllForMapKey" resultType="com.thd.springboot.framework.example.entity.SysUser">
         select
         <include refid="BASE_COLUMN"/>
         from
@@ -120,6 +123,46 @@
                 user_name like concat('%',#{userName},'%')
             </where>
         </if>
+    </select>
+
+    <!-- ================================ 以下是mapper的最小参数配置 ========================== -->
+    <select id="configByMinParams" resultType="int">
+        select count(1) from sys_user
+        <if test="userName != null and userName != '' ">
+            <where>
+                user_name like concat('%',#{userName},'%')
+            </where>
+        </if>
+    </select>
+
+    <select id="configByMinParams01" resultType="map">
+        select
+        <include refid="BASE_COLUMN"/>
+        from
+        <include refid="BASE_TABLE"/>
+        <where>
+            <if test="userName != null and userName != ''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+            <if test="userSex != null and userSex != ''">
+                and user_sex = #{userSex}
+            </if>
+        </where>
+    </select>
+
+    <select id="configByMinParams02" resultType="com.thd.springboot.framework.example.entity.SysUser">
+        select
+        <include refid="BASE_COLUMN"/>
+        from
+        <include refid="BASE_TABLE"/>
+        <where>
+            <if test="userName != null and userName != ''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+            <if test="userSex != null and userSex != ''">
+                and user_sex = #{userSex}
+            </if>
+        </where>
     </select>
 
 

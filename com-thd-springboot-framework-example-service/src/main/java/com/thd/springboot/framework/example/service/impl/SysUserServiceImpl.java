@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * com.thd.springboot.framework.example.service.impl.SysUserServiceImpl
@@ -22,13 +23,21 @@ public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SysUserMapper sysUserMapper;
     // 根据id查询用户
-    public SysUser getByUserId(String id){
+    public SysUser queryById(String id){
         return sysUserMapper.selectById(id);
     }
     //获取全部用户
     public List<SysUser> getAll(){
         return sysUserMapper.selectAll();
     }
+
+    public List<Map<String,String>> selectAllForMap(){
+        return this.sysUserMapper.selectAllForMap();
+    };
+
+    public Map<String,SysUser> selectAllForMapKey(){
+        return this.sysUserMapper.selectAllForMapKey();
+    };
     @Transactional
     //保存用户
     public int insert(SysUser user){

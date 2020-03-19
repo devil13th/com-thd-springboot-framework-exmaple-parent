@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.example.entity.SysUser;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * com.thd.springboot.framework.example.service.SysUserService
@@ -12,7 +13,7 @@ import java.util.List;
  * @DATE: 2020/1/21 17:02
  **/
 public interface SysUserService {
-    public SysUser getByUserId(String id);
+    public SysUser queryById(String id);
     //获取全部用户
     public List<SysUser> getAll();
 
@@ -22,4 +23,7 @@ public interface SysUserService {
 
     // 分页查询
     public PageInfo<SysUser> queryByNamePage(String username, int limit, int page);
+
+    public List<Map<String,String>> selectAllForMap();
+    public Map<String,SysUser> selectAllForMapKey();
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * com.thd.springboot.framework.example.web.SysUserController
@@ -33,6 +34,35 @@ public class SysUserController extends BasicController {
     public Message queryAll(){
         List<SysUser> l = this.sysUserService.getAll();
         return Message.success(l);
+    }
+
+    @RequestMapping("/selectAllForMap")
+    @ResponseBody
+    //url : http://127.0.0.1:8899/thd/sysUser/selectAllForMap
+    public Message selectAllForMap(){
+        List<Map<String,String>> l = this.sysUserService.selectAllForMap();
+        return Message.success(l);
+    }
+
+    @RequestMapping("/selectAllForMapKey")
+    @ResponseBody
+    //url : http://127.0.0.1:8899/thd/sysUser/selectAllForMapKey
+    public Message selectAllForMapKey(){
+        Map<String,SysUser> l = this.sysUserService.selectAllForMapKey();
+        return Message.success(l);
+    }
+
+
+
+
+
+
+    @RequestMapping("/queryById/{id}")
+    @ResponseBody
+    //url : http://127.0.0.1:8899/thd/sysUser/queryById/13a06ef054be4363a134908cff47eaa9
+    public Message getNameById(@PathVariable String id){
+        SysUser u = this.sysUserService.queryById(id);
+        return Message.success(u);
     }
 
 
