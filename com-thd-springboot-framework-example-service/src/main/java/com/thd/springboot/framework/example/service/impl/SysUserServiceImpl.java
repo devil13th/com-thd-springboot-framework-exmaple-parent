@@ -1,10 +1,10 @@
 package com.thd.springboot.framework.example.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.thd.springboot.framework.example.entity.SysUser;
 import com.thd.springboot.framework.example.mapper.SysUserMapper;
 import com.thd.springboot.framework.example.service.SysUserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,9 +50,21 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     // 分页查询
-    public PageInfo<SysUser> queryByNamePage(String username, int limit, int page){
-        PageHelper.startPage(page, limit).setOrderBy("user_name desc");
-        PageInfo<SysUser> userPageInfo = new PageInfo<SysUser>(sysUserMapper.queryByName(username));
-        return userPageInfo;
+//    public PageInfo<SysUser> queryByNamePage(String username, int limit, int page){
+//        PageHelper.startPage(page, limit).setOrderBy("user_name desc");
+//        PageInfo<SysUser> userPageInfo = new PageInfo<SysUser>(sysUserMapper.queryByName(username));
+//        return userPageInfo;
+//    }
+
+
+
+
+    // ---------------------------- mybatis plugin method ------------------//
+
+    // 根据姓名查询用户
+    public SysUser queryOneByName(String name){
+        QueryWrapper<SysUser> qw = new QueryWrapper<SysUser>();
+        qw.eq("user_name",name);
+        return this.sysUserMapper.selectOne(qw);
     }
 }

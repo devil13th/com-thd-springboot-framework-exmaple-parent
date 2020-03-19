@@ -1,6 +1,5 @@
 package com.thd.springboot.framework.example.web;
 
-import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.example.entity.SysUser;
 import com.thd.springboot.framework.example.service.SysUserService;
 import com.thd.springboot.framework.model.Message;
@@ -70,11 +69,24 @@ public class SysUserController extends BasicController {
      * 测试分页插件
      * @return
      */
+//    @ResponseBody
+//    @RequestMapping(value="/queryByName/{name}/{page}/{pageSize}")
+//    //http://127.0.0.1:8899/thd/mybatis/queryByName/{name}/{page}/{pageSize}
+//    public ResponseEntity queryByName(@PathVariable String name, @PathVariable int page, @PathVariable int pageSize){
+//        PageInfo<SysUser> pi = this.sysUserService.queryByNamePage(name,pageSize,page);
+//        return ResponseEntity.ok(pi);
+//    }
+
+
+
+    @RequestMapping("/queryOneyName/{name}")
     @ResponseBody
-    @RequestMapping(value="/queryByName/{name}/{page}/{pageSize}")
-    //http://127.0.0.1:8899/thd/mybatis/queryByName/{name}/{page}/{pageSize}
-    public ResponseEntity queryByName(@PathVariable String name, @PathVariable int page, @PathVariable int pageSize){
-        PageInfo<SysUser> pi = this.sysUserService.queryByNamePage(name,pageSize,page);
-        return ResponseEntity.ok(pi);
+    //url : http://127.0.0.1:8899/thd/sysUser/queryOneyName/user_01
+    public Message queryOneyName(@PathVariable String name){
+        SysUser u = this.sysUserService.queryOneByName(name);
+        return Message.success(u);
     }
+
+
+
 }

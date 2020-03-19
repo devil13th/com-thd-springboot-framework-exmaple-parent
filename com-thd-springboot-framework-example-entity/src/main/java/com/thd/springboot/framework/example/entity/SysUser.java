@@ -1,7 +1,5 @@
 package com.thd.springboot.framework.example.entity;
 
-import com.github.pagehelper.Page;
-import com.thd.springboot.framework.db.entity.BasicEntity;
 import lombok.Data;
 
 import java.util.Date;

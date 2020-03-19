@@ -1,6 +1,5 @@
 package com.thd.springboot.framework.example.service;
 
-import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.example.entity.SysUser;
 
 import java.util.List;
@@ -22,8 +21,12 @@ public interface SysUserService {
     public List<SysUser> queryByName(String name);
 
     // 分页查询
-    public PageInfo<SysUser> queryByNamePage(String username, int limit, int page);
+//    public PageInfo<SysUser> queryByNamePage(String username, int limit, int page);
 
     public List<Map<String,String>> selectAllForMap();
     public Map<String,SysUser> selectAllForMapKey();
+
+    // 测试mybatis-plugs 方法
+    public SysUser queryOneByName(String name);
+
 }

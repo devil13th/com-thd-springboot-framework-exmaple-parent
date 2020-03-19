@@ -1,5 +1,6 @@
 package com.thd.springboot.framework.example.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.thd.springboot.framework.example.entity.SysUser;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import java.util.Map;
  **/
 @Mapper
 @Repository
-public interface SysUserMapper {
+public interface SysUserMapper extends BaseMapper<SysUser> {
     @Select("select * from sys_user where user_id=#{id}")
     public SysUser getNameById(@Param("id") long id);
 
@@ -59,4 +60,6 @@ public interface SysUserMapper {
 
     //  mapper的最小配置参数 - 返回列表 泛型为实体对象
     List<SysUser> configByMinParams02(SysUser user);
+
+
 }
