@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thd.springboot.framework.example.mapper.CgExampleMapper">
+	<!-- Result Map -->
+	<resultMap id="ResultMap" type="com.thd.springboot.framework.example.entity.CgExampleEntity">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="age" property="age" />
+		<result column="birthday" property="birthday" />
+	</resultMap>
+
+
+	<sql id="column_list">
+	    cg_example.`id`, <!-- 0 主键 -->
+	    cg_example.`name`, <!-- 0 姓名 -->
+	    cg_example.`age`, <!-- 1 年龄 -->
+	    cg_example.`birthday` <!-- 2 生日 -->
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="where_eq">
+		where is_deleted = 0
+    <if test="id != null ">
+        and cg_example.`id` = #{id}
+    </if>
+        <if test="name != null and name != '' ">
+            and cg_example.`name` = #{name}
+        </if>
+        <if test="age != null ">
+            and cg_example.`age` = #{age}
+        </if>
+        <if test="birthday != null ">
+            and cg_example.`birthday` = #{birthday}
+        </if>
+	</sql>
+
+	<!-- 查询条件 -->
+    <sql id="where_like">
+        where is_deleted = 0
+    <if test="id != null ">
+        and cg_example.`id` like #{id}
+    </if>
+        <if test="name != null and name != '' ">
+            and cg_example.`name` like CONCAT('%',#{name},'%')
+        </if>
+        <if test="age != null ">
+            and cg_example.`age` = #{age}
+        </if>
+        <if test="birthday != null ">
+            and cg_example.`birthday` = #{birthday}
+        </if>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="add" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+        insert into cg_example(
+            `id`,
+            `name`,
+            `age`,
+            `birthday`
+        )
+        values(
+            `#{id}`,
+            `#{name}`,
+            `#{age}`,
+            `#{birthday}`
+        )
+    </insert>
+
+
+	<!-- 根据id，修改记录 -->
+	<update id="update" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+		update cg_example set
+	    <trim  suffixOverrides="," >
+	        <if test="id != null ">
+	            `id`=#{id},
+	        </if>
+            <if test="name != null ">
+                `name`=#{name},
+            </if>
+            <if test="age != null ">
+                `age`=#{age},
+            </if>
+            <if test="birthday != null ">
+                `birthday`=#{birthday},
+            </if>
+	    </trim>
+	    where `id`=#{id}
+	</update>
+
+	<!-- 查询列表 -->
+    <select id="queryEq" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+        select
+        <include refid="column_list" />
+        from cg_example
+        <include refid="where_eq" />
+        <if test="orderBy != null and orderBy != ''">
+         order by
+        </if>
+    </select>
+
+    <!-- 查询列表 -->
+    <select id="queryLike" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+        select
+        <include refid="column_list" />
+        from cg_example
+        <include refid="where_like" />
+        <if test="orderBy != null and orderBy != ''">
+         order by
+        </if>
+    </select>
+
+
+	<!-- 删除记录 -->
+	<delete id="delete" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+		delete from  cg_example where `id` = #{id}
+	</delete>
+
+	<!-- 逻辑删除记录 -->
+	<update id="isDelete" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+		update  cg_example set is_deleted = 1 where `id` = #{id}
+	</update>
+
+	<!-- 根据id查询 -->
+	<select id="queryById" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+		select <include refid="column_list" /> from cg_example where `id` = #{id}
+	</select>
+
+
+</mapper>
