@@ -14,12 +14,12 @@ public class  CgExampleEntity extends BasicEntity<String> {
     @TableField("id")
     private String id;
     // 姓名
-    @TableField("name")
-    private String name;
+    @TableField("user_name")
+    private String userName;
     // 年龄
-    @TableField("age")
-    private Integer age;
+    @TableField("user_age")
+    private Integer userAge;
     // 生日
-    @TableField("birthday")
-    private Date birthday;
+    @TableField("user_birthday")
+    private Date userBirthday;
 }
