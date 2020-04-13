@@ -1,10 +1,8 @@
 package com.thd.springboot.framework.example.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.db.mapper.BasicMapper;
 import com.thd.springboot.framework.db.service.BasicServiceImpl;
-import com.thd.springboot.framework.db.utils.PageUtils;
 import com.thd.springboot.framework.example.entity.CgExampleEntity;
 import com.thd.springboot.framework.example.mapper.CgExampleMapper;
 import com.thd.springboot.framework.example.service.CgExampleService;
@@ -14,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -36,9 +35,6 @@ public class CgExampleServiceImpl extends BasicServiceImpl<CgExampleEntity> impl
         return cgExampleMapper.selectOne(qw);
     };
 
-    public List<CgExampleEntity> queryCgExample(QueryWrapper<CgExampleEntity> wrapper){
-        return cgExampleMapper.selectList(wrapper);
-    }
 
     public List<CgExampleEntity> queryCgExampleEq(CgExampleEntity entity){
         return cgExampleMapper.queryEq(entity);
@@ -50,10 +46,18 @@ public class CgExampleServiceImpl extends BasicServiceImpl<CgExampleEntity> impl
 
 
 
+    public List<CgExampleEntity> queryCgExample(QueryWrapper<CgExampleEntity> wrapper){
+        return cgExampleMapper.selectList(wrapper);
+    }
+
+
     public IPage<CgExampleEntity> queryCgExampleByPage(QueryWrapper<CgExampleEntity> wrapper, Page page){
         return cgExampleMapper.selectPage(page,wrapper);
     }
 
 
+    public Map<String,CgExampleEntity> queryAllToMapKey(){
+        return cgExampleMapper.queryAllToMapKey();
+    }
 
 }
