@@ -134,9 +134,7 @@
         <include refid="column_list" />
         from cg_example
         <include refid="where_eq" />
-        <if test="orderBy != null and orderBy != ''">
-         order by #{orderBy}
-        </if>
+
     </select>
 
     <select id="queryLike" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
@@ -144,9 +142,7 @@
         <include refid="column_list" />
         from cg_example
         <include refid="where_like" />
-        <if test="orderBy != null and orderBy != ''">
-         order by  #{orderBy}
-        </if>
+
     </select>
 
 

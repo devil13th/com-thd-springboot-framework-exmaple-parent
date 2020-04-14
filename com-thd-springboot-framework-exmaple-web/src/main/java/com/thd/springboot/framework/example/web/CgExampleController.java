@@ -26,63 +26,54 @@ public class CgExampleController extends BasicController {
     private CgExampleService cgExampleServiceImpl;
 
 
-
-
     @ResponseBody
     @RequestMapping("/test")
     // url : http://127.0.0.1:8899/thd/cg/test
     public Message test(){
-        System.out.println("123412341234");
+        System.out.println("test");
         List<CgExampleEntity> l = this.cgExampleServiceImpl.queryAllCgExample();
         return Message.success(l);
     }
 
     @ResponseBody
-    @PostMapping("/add")
-    // url : http://127.0.0.1:8899/thd/cg/add
-    public Message add(@RequestBody CgExampleEntity entity){
+    @PostMapping("/addCgExample")
+    // url : http://127.0.0.1:8899/thd/cg/addCgExample
+    public Message addCgExample(@RequestBody CgExampleEntity entity){
         this.cgExampleServiceImpl.add(entity);
         return Message.success("SUCCESS");
     }
     @ResponseBody
-    @PostMapping("/update")
-    // url : http://127.0.0.1:8899/thd/cg/update
-    public Message update(@RequestBody CgExampleEntity entity){
-        this.cgExampleServiceImpl.update(entity);
+    @PostMapping("/updateCgExample")
+    // url : http://127.0.0.1:8899/thd/cg/updateCgExample
+    public Message updateCgExample(@RequestBody CgExampleEntity entity){
+        int updateCount = this.cgExampleServiceImpl.update(entity);
+        if(updateCount!=1){
+            throw new RuntimeException(" Update Failed !");
+        }
         return Message.success("SUCCESS");
     }
     @ResponseBody
-    @DeleteMapping("/physicsDelete/{id}")
-    // url : http://127.0.0.1:8899/thd/cg/physicsDelete/15
-    public Message physicsDelete(@PathVariable String id){
+    @DeleteMapping("/physicsDeleteCgExample/{id}")
+    // url : http://127.0.0.1:8899/thd/cg/physicsDeleteCgExample/15
+    public Message physicsDeleteCgExample(@PathVariable String id){
         this.cgExampleServiceImpl.physicsDelete(id);
         return Message.success("SUCCESS");
     }
 
 
     @ResponseBody
-    @DeleteMapping("/logicDelete/{id}")
-    // url : http://127.0.0.1:8899/thd/cg/logicDelete/15
-    public Message logicDelete(@PathVariable String id){
+    @DeleteMapping("/logicDeleteCgExample/{id}")
+    // url : http://127.0.0.1:8899/thd/cg/logicDeleteCgExample/15
+    public Message logicDeleteCgExample(@PathVariable String id){
         this.cgExampleServiceImpl.logicDelete(id);
         return Message.success("SUCCESS");
     }
 
 
 
-    @ResponseBody
-    @RequestMapping("/queryByName/{name}")
-    // url : http://127.0.0.1:8899/thd/cg/queryByName/s
-    public Message queryByName(@PathVariable String name){
-        QueryWrapper<CgExampleEntity> q = new QueryWrapper<CgExampleEntity>();
-        q.eq("user_name",name);
-        List<CgExampleEntity> l = this.cgExampleServiceImpl.queryCgExample(q);
-        return Message.success(l);
-    }
-
 
     @ResponseBody
-    @RequestMapping("/queryCgExample/{id}")
+    @RequestMapping("/queryCgExampleById/{id}")
     // url : http://127.0.0.1:8899/thd/cg/queryCgExample/2
     public Message queryCgExample(@PathVariable String id){
         CgExampleEntity entity = this.cgExampleServiceImpl.queryCgExampleById(id);
@@ -108,7 +99,7 @@ public class CgExampleController extends BasicController {
 
 
     @ResponseBody
-    @RequestMapping("/queryByWrapper")
+    @RequestMapping("/queryCgExampleByWrapper")
     // url : http://127.0.0.1:8899/thd/cg/queryLikeByPage
     public Message queryByWrapper(@RequestBody CgExampleEntity entity){
         QueryWrapper<CgExampleEntity> query = new QueryWrapper<>();
@@ -118,9 +109,9 @@ public class CgExampleController extends BasicController {
     }
 
     @ResponseBody
-    @RequestMapping("/queryAllToMapKey")
-    // url : http://127.0.0.1:8899/thd/cg/queryAllToMapKey
-    public Message queryAllToMapKey(){
+    @RequestMapping("/queryAllCgExampleToMapKey")
+    // url : http://127.0.0.1:8899/thd/cg/queryAllCgExampleToMapKey
+    public Message queryAllCgExampleToMapKey(){
         QueryWrapper<CgExampleEntity> query = new QueryWrapper<>();
         query.eq("user_name","c");
         Map<String,CgExampleEntity> list = this.cgExampleServiceImpl.queryAllToMapKey();
@@ -131,9 +122,9 @@ public class CgExampleController extends BasicController {
 
 
     @ResponseBody
-    @RequestMapping("/insertBatch")
-    // url : http://127.0.0.1:8899/thd/cg/insertBatch
-    public Message insertBatch(){
+    @RequestMapping("/insertCgExampleBatch")
+    // url : http://127.0.0.1:8899/thd/cg/insertCgExampleBatch
+    public Message insertCgExampleBatch(){
 
         List<CgExampleEntity> l = new ArrayList<CgExampleEntity>();
         for(int i = 0 , j = 10 ; i < j ; i++){

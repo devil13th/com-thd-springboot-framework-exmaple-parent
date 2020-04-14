@@ -1,5 +1,6 @@
 package com.thd.springboot.framework.example.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 
