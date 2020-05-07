@@ -86,6 +86,9 @@ mybatis-plus:
   configuration:
     ## 打印日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+############################ shiro ############################
+shiro:
+  enable: true
 
 ############################ log ############################
 logging:
