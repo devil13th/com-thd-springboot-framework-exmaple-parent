@@ -35,6 +35,18 @@
     </dependencyManagement>
 
 
+
+    <dependencies>
+        <dependency>
+            <groupId>com.thd.springboot.framework</groupId>
+            <artifactId>com-thd-springboot-framework-shiro</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.thd.springboot.framework</groupId>
+             <artifactId>com-thd-springboot-framework-redis</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <!-- 设置maven编译使用的jdk -->

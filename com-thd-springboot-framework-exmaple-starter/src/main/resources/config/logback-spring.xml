@@ -244,6 +244,7 @@
         <appender-ref ref="ERROR_FILE" />
         <appender-ref ref="WARN_FILE" />
         <appender-ref ref="DEBUG_FILE" />
+        <appender-ref ref="CONSOLE_COLOR" />
     </logger>
 
 
