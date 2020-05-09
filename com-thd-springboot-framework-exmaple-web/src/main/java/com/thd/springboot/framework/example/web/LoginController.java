@@ -141,7 +141,7 @@ public class LoginController extends BasicController {
         // 生成6位随机数
         String code =  UUID.randomUUID().toString().replace("-","").substring(0,6);
         // 保存到session中
-        SecurityUtils.getSubject().getSession().setAttribute("code",code);
+        SecurityUtils.getSubject().getSession().setAttribute("validateCode",code);
 
         return code;
     }
