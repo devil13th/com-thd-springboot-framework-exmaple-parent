@@ -134,6 +134,27 @@ public class LoginController extends BasicController {
     }
 
 
+
+    @RequestMapping("/validatecode")
+    @ResponseBody
+    // url : http://127.0.0.1:8899/thd/validatecode
+    public String validatecode(){
+        // 生成6位随机数
+        //String code =  UUID.randomUUID().toString().replace("-","").substring(0,6);
+        // 保存到session中
+        //SecurityUtils.getSubject().getSession().setAttribute("validateCode",code);
+
+
+
+        Object code =  SecurityUtils.getSubject().getSession().getAttribute("validateCode");
+        if(code == null){
+            throw new RuntimeException("未生成验证码");
+        }
+        String validateCode = code.toString();
+
+        return validateCode;
+    }
+
     @RequestMapping("/getPhoneLoginCode")
     @ResponseBody
     // url : http://127.0.0.1:8899/thd/getPhoneLoginCode
