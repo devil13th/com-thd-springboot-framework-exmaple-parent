@@ -1,0 +1,355 @@
+{
+	"info": {
+		"name": "framework",
+		"_postman_id": "85f444fc-3e7c-9ca1-e138-11746cec5e5a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/queryCgExampleByWrapper",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"currentPage\":2,\n\"pageSize\":2,\n\"userName\":\"devil13th_1\",\n\"sortField\":\"user_name\",\n\"sortOrder\":\"asc\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/queryCgExampleEqByPage",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"queryCgExampleEqByPage"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": " http://127.0.0.1:8899/thd/cg/queryByWrapper",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/queryByWrapper",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"queryByWrapper"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/queryAllCgExampleToMapKey",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/queryAllCgExampleToMapKey",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"queryAllCgExampleToMapKey"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/insertCgExampleBatch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/insertCgExampleBatch",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"insertCgExampleBatch"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/addCgExample",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"thd1\",\n\t\"userAge\":15,\n\t\"userBirthday\":\"2025-01-01\",\n\t\"id\":\"xx\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/addCgExample",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"addCgExample"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/updateCgExample",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"thd1\",\n\t\"userAge\":13,\n\t\"userBirthday\":\"2025-01-01\",\n\t\"id\":\"xx3\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/updateCgExample",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"updateCgExample"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/physicsDeleteCgExample/16",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/physicsDeleteCgExample/xx",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"physicsDeleteCgExample",
+						"xx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/logicDeleteCgExample/13",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/logicDeleteCgExample/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"logicDeleteCgExample",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/queryCgExampleById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"thd1\",\n\t\"userAge\":13,\n\t\"userBirthday\":\"2025-01-01\",\n\t\"id\":\"xx3\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/queryCgExampleById/xx",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"queryCgExampleById",
+						"xx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/queryCgExampleLikeByPage",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"dev\",\n\"currentPage\":2,\n\"pageSize\":2,\n\"sortField\":\"user_name\",\n\"sortOrder\":\"asc\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/queryCgExampleLikeByPage",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"queryCgExampleLikeByPage"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8899/thd/cg/queryCgExampleByWrapper",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"currentPage\":2,\n\"pageSize\":2,\n\"userName\":\"devil13th_1\",\n\"sortField\":\"user_name\",\n\"sortOrder\":\"asc\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8899/thd/cg/queryCgExampleByWrapper",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8899",
+					"path": [
+						"thd",
+						"cg",
+						"queryCgExampleByWrapper"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
