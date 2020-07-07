@@ -38,3 +38,6 @@ ${coding.entityPackageName}
 ===========  自定义信息  ==========
 name : ${customData.map.name}
 version : ${customData.map.version}
+a : ${customData.map.a}
+b : ${customData.map.b}
+c : ${customData.map.c}

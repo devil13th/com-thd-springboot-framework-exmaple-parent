@@ -1,4 +1,4 @@
-package com.thd.springboot.framework.example.web;
+package ${coding.controllerPackageName};
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageInfo;

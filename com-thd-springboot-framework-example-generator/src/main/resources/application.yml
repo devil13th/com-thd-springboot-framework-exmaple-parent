@@ -2,15 +2,34 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:postgresql://10.122.49.55:15432/PROJ_DSCQM?useUnicode=true&characterEncoding=UTF-8
-    username: proj_dscqm
-    password: proj_dscqm
-    driver-class-name: org.postgresql.Driver
-dbType: greenplum
+#  PGSQL
+#    url: jdbc:postgresql://10.122.49.55:15432/PROJ_DSCQM?useUnicode=true&characterEncoding=UTF-8
+#    username: proj_dscqm
+#    password: proj_dscqm
+#    driver-class-name: org.postgresql.Driver
+
+# mysql
+      url: jdbc:mysql://10.122.42.3:3306/dscqm_test?serverTimezone=Asia/Shanghai&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: a_dscqm-test
+      password: dqm&$!20ERB*
+      #    driver-class-name: org.postgresql.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+#dbType: greenplum
+dbType: mysql
+
 # 表空间
-schema: dscqm_pcg
+#schema: dscqm_pcg
+schema: dscqm_test
+
+
+
+
+
 # 模板公共路径
-templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-exmaple-parent\com-thd-springboot-framework-example-generator\src\main\resources\template\ssm\
+#templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-exmaple-parent\com-thd-springboot-framework-example-generator\src\main\resources\template\ssm\
+templateFolderPath: D:\work\java-workspace\dqm-cloud\dqm-generate\src\main\resources\newtemplate\
 #  生成文件公共路径
 targetFolderPath: D:\deleteme\cg1\
 # 包配置
@@ -25,6 +44,9 @@ custom:
   map:
     name: codeGen
     version: 1.0
+    a: 4
+    b: b
+    c: 6
 
 
 
