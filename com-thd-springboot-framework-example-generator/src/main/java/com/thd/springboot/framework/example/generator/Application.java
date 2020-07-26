@@ -2,6 +2,7 @@ package com.thd.springboot.framework.example.generator;
 
 import com.thd.springboot.framework.example.generator.impl.MakeCode;
 import com.thd.springboot.framework.generator.GeneratorApplication;
+import com.thd.springboot.framework.generator.core.CodeGen;
 import com.thd.springboot.framework.generator.core.tool.CodeGenUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -17,7 +18,7 @@ import java.util.stream.Stream;
  * @DATE: 2020/7/1 17:45
  **/
 
-public class CodeGen {
+public class Application {
     /**
      * args0 : 表名称
      *
@@ -29,23 +30,22 @@ public class CodeGen {
      */
     public static void main(String[] args) throws Exception{
 
-        System.out.println(" 参数1: 表名 , 参数2 ：模板名称 , 参数3：生成文件名称 , 参数4:模板名称 , 参数5：生成文件名称 ...");
 
         ConfigurableApplicationContext ctx = SpringApplication.run(GeneratorApplication.class, args);
         String[] names = ctx.getBeanDefinitionNames();
         Stream.of(names).forEach(System.out::println);
 
+        // 打印出spring ioc 所有的bean
 //        JdbcTemplate j = ctx.getBean(JdbcTemplate.class);
 //        System.out.println(j);
 
 
-        com.thd.springboot.framework.generator.core.CodeGen cg = ctx.getBean(CodeGenUtil.class);
-
-
-//        tu.generator("sys_user");
+        CodeGen cg = ctx.getBean(CodeGenUtil.class);
 
 
 
+
+        //==============================  方法1  直接调用 cg.createCode()方法生成代码
 
 //        cg.createCode("cg_example","example.ftl","example.txt");
 //        cg.createCode("cg_example","mapper.ftl","CgExampleMapper.xml");
@@ -61,43 +61,31 @@ public class CodeGen {
 //        cg.createCode("t_painting_actual_input_output","mapper.ftl","${table.nameBigCamel}Mapper.xml");
 //        cg.createCode("t_painting_actual_input_output","entity.ftl","${table.nameBigCamel}Entity.java");
 //        cg.createCode("t_painting_actual_input_output","example.ftl","/${table.nameBigCamel}/${table.nameBigCamel}Example.java");
-        String[] argsArr = args;
-
-        if(null == argsArr || argsArr.length == 0){
-          throw new RuntimeException("请输入参数");
-        }
-
-        if(argsArr.length < 3){
-          throw new RuntimeException("参数个数错误，至少3个参数");
-        }
-
-        if(args.length % 2 == 0){
-            throw new RuntimeException("参数个数错误，必须是奇数个参数");
-        }
-        String tableName = argsArr[0];
-        System.out.println(String.format("表名称:%s",tableName));
-
-        int i = 0;
-        Map<String,String> m = new HashMap<String,String>();
-        while(i < argsArr.length){
-            if(i != 0){
-                m.put(argsArr[i++],argsArr[i++]);
-            }else{
-                i++;
-            }
-
-        }
-
-        Set<Map.Entry<String,String>> templateInfos = m.entrySet();
-        Iterator<Map.Entry<String,String>> iter = templateInfos.iterator();
-        while(iter.hasNext()){
-            Map.Entry<String,String> item = iter.next();
-            cg.createCode(tableName,item.getKey(),item.getValue());
-        }
 
 
+
+        //==============================  方法3  直接生成所有代码(entity dao mapper service controller... )
 //        MakeCode mc = ctx.getBean(MakeCode.class);
-//        mc.markCode("audit_info");
+//        mc.markCode("sys_dic");
+
+
+
+
+        //==============================  方法2 java -jar 的方式调用生成代码
+
+        MakeCode mc = ctx.getBean(MakeCode.class);
+        mc.makeCodeByJavaJar(args);
+
+        /*
+        example:
+        java -jar com-thd-springboot-framework-example-generator-1.0.0-SNAPSHOT.jar t_bonding_bom entity.ftl entity/${table.nameBigCamel}Entity.java entityParent.ftl ${table.nameBigCamel}EntityParent.java mapper.ftl ${table.nameBigCamel}Mapper.xml dao.ftl ${table.nameBigCamel}Mapper.java service.ftl ${table.nameBigCamel}Service.java serviceImpl.ftl ${table.nameBigCamel}ServiceImpl.java controller.ftl ${table.nameBigCamel}Controller.java example.ftl example.txt
+         */
+
+
+
+
+
+
     }
 
 
