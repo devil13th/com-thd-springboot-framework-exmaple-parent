@@ -1,15 +1,14 @@
 package ${coding.mapperPackageName};
-import com.thd.springboot.framework.db.mapper.BasicMapper;
-import org.springframework.stereotype.Repository;
-import org.apache.ibatis.annotations.MapKey;
+import com.lenovo.gsc.tech.framework.base.mapper.BaseMapper;
 import ${coding.entityPackageName}.${table.nameBigCamel}Entity;
-import java.util.Map;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
-public interface ${table.nameBigCamel}Mapper extends BasicMapper<${table.nameBigCamel}Entity> {
-
-    // 返回map, key为指定属性，value为实体类结果集
-    @MapKey("${table.pkColumn.nameCamel}")  // 指定key属性取哪列
-    public Map<${table.pkColumn.dataType},${table.nameBigCamel}Entity> queryAllToMapKey();
-
+public interface ${table.nameBigCamel}Mapper extends BaseMapper<${table.nameBigCamel}Entity> {
+    
+    // 批量插入
+    public void insertBatch(@Param(value="list") List<${table.nameBigCamel}Entity> list);
 }

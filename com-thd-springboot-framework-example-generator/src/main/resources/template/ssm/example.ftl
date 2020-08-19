@@ -27,7 +27,7 @@ ${get}table.pkColumn.isNullAble?c} ${table.pkColumn.isNullAble?c}
 ${get}col.name} ${col.name}
 ${get}col.nameCamel} ${col.nameCamel}
 ${get}col.nameBigCamel} ${col.nameBigCamel}
-${get}col.len} ${col.len}
+${get}col.len!"空值"} ${col.len!"空值"}
 ${get}col.comment} ${col.comment}
 ${get}col.dataType} ${col.dataType}
 ${get}col.dbDataType} ${col.dbDataType}

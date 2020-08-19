@@ -1,13 +1,13 @@
 package ${coding.controllerPackageName};
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.pagehelper.PageInfo;
+import com.lenovo.gsc.tech.framework.model.Message;
+import com.lenovo.gsc.tech.framework.model.Pager;
+import com.lenovo.gsc.tech.framework.base.controller.BasicController;
 import ${coding.entityPackageName}.${table.nameBigCamel}Entity;
 import ${coding.servicePackageName}.${table.nameBigCamel}Service;
-import com.thd.springboot.framework.model.Message;
-import com.thd.springboot.framework.web.BasicController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,128 +18,83 @@ import java.util.Map;
 /**
  * ${coding.controllerPackageName}.${table.nameBigCamel}Controller
  **/
-@Controller
-@RequestMapping("/cg")
-public class ${table.nameBigCamel}Controller extends BasicController {
+@RestController
+@RequestMapping("/${table.nameCamel}")
+public class  ${table.nameBigCamel}Controller extends BasicController{
 
-    @Autowired
-    private ${table.nameBigCamel}Service ${table.nameCamel}ServiceImpl;
+	@Autowired
+	private  ${table.nameBigCamel}Service  ${table.nameCamel}Service;
 
+	/**
+	 * 添加数据
+	 */
+	@PostMapping(value = "/add${table.nameBigCamel}")
+	@ResponseBody
+	public Message add${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity  ${table.nameCamel}) {
+		// 生成主键
+		if(StringUtils.isEmpty(${table.nameCamel}.get${table.pkColumn.nameBigCamel}())){
+			${table.nameCamel}.set${table.pkColumn.nameBigCamel}(UUID.randomUUID().toString().replace("-",""));
+		}
+		${table.nameCamel}Service.add(${table.nameCamel});
+		return sendSuccessMessage(${table.nameCamel});
+	}
 
-    @ResponseBody
-    @RequestMapping("/test")
-    // url : http://127.0.0.1:8899/thd/cg/test
-    public Message test(){
-        System.out.println("test");
-        List<${table.nameBigCamel}Entity> l = this.${table.nameCamel}ServiceImpl.queryAll${table.nameBigCamel}();
-        return Message.success(l);
-    }
+	/**
+	 * 修改数据
+	 *
+	 * @param  ${table.nameCamel}
+	 * @return
+	 */
+	@PutMapping(value = "/update${table.nameBigCamel}")
+	@ResponseBody
+	public Message update${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity  ${table.nameCamel}) {
+		 ${table.nameCamel}Service.update(${table.nameCamel});
+		return sendSuccessMessage(${table.nameCamel});
+	}
 
-    @ResponseBody
-    @PostMapping("/add${table.nameBigCamel}")
-    // url : http://127.0.0.1:8899/thd/cg/add${table.nameBigCamel}
-    public Message add${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity entity){
-        this.${table.nameCamel}ServiceImpl.add(entity);
-        return Message.success("SUCCESS");
-    }
-    @ResponseBody
-    @PostMapping("/update${table.nameBigCamel}")
-    // url : http://127.0.0.1:8899/thd/cg/update${table.nameBigCamel}
-    public Message update${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity entity){
-        this.${table.nameCamel}ServiceImpl.update(entity);
-        return Message.success("SUCCESS");
-    }
-    @ResponseBody
-    @DeleteMapping("/physicsDelete${table.nameBigCamel}/{id}")
-    // url : http://127.0.0.1:8899/thd/cg/physicsDelete${table.nameBigCamel}/15
-    public Message physicsDelete${table.nameBigCamel}(@PathVariable String id){
-        this.${table.nameCamel}ServiceImpl.physicsDelete(id);
-        return Message.success("SUCCESS");
-    }
+	/**
+	 * 获取数据
+	 *
+	 * @param ${table.pkColumn.nameCamel}
+	 * @return
+	 */
+	@GetMapping("/find${table.nameBigCamel}ById/{${table.pkColumn.nameCamel}}")
+	@ResponseBody
+	public Message find${table.nameBigCamel}ById(@PathVariable ${table.pkColumn.dataType} ${table.pkColumn.nameCamel}) {
+		 ${table.nameBigCamel}Entity  ${table.nameCamel}  =  ${table.nameCamel}Service.findById(${table.pkColumn.nameCamel});
+		if( ${table.nameCamel} == null){
+			return sendFailureMessage("No qualifying record!");
+		}
+		return sendSuccessMessage(${table.nameCamel});
+	}
 
+	/**
+	 * 列表数据
+	 *
+	 * @param  ${table.nameCamel}
+	 * @return
+	 */
+	@GetMapping("/find${table.nameBigCamel}Page")
+	@ResponseBody
+	public Message find${table.nameBigCamel}Page(${table.nameBigCamel}Entity ${table.nameCamel}) {
+		Pager<${table.nameBigCamel}Entity> pager = ${table.nameCamel}Service.findPageByLike(${table.nameCamel});
+		return sendSuccessMessage(pager);
+	}
 
-    @ResponseBody
-    @DeleteMapping("/logicDelete${table.nameBigCamel}/{id}")
-    // url : http://127.0.0.1:8899/thd/cg/logicDelete${table.nameBigCamel}/15
-    public Message logicDelete${table.nameBigCamel}(@PathVariable String id){
-        this.${table.nameCamel}ServiceImpl.logicDelete(id);
-        return Message.success("SUCCESS");
-    }
-
-
-
-
-    @ResponseBody
-    @RequestMapping("/query${table.nameBigCamel}/{id}")
-    // url : http://127.0.0.1:8899/thd/cg/query${table.nameBigCamel}/2
-    public Message query${table.nameBigCamel}(@PathVariable String id){
-        ${table.nameBigCamel}Entity entity = this.${table.nameCamel}ServiceImpl.query${table.nameBigCamel}ById(id);
-        return Message.success(entity);
-    }
-
-    @ResponseBody
-    @RequestMapping("/query${table.nameBigCamel}EqByPage")
-    // url : http://127.0.0.1:8899/thd/cg/query${table.nameBigCamel}EqByPage
-    public Message query${table.nameBigCamel}EqByPage(@RequestBody ${table.nameBigCamel}Entity entity){
-        PageInfo pi = this.${table.nameCamel}ServiceImpl.queryEqByPage(entity);
-        return Message.success(pi);
-    }
-
-
-    @ResponseBody
-    @RequestMapping("/query${table.nameBigCamel}LikeByPage")
-    // url : http://127.0.0.1:8899/thd/cg/query${table.nameBigCamel}LikeByPage
-    public Message query${table.nameBigCamel}LikeByPage(@RequestBody ${table.nameBigCamel}Entity entity){
-        PageInfo pi = this.${table.nameCamel}ServiceImpl.queryLikeByPage(entity);
-        return Message.success(pi);
-    }
-
-
-    @ResponseBody
-    @RequestMapping("/query${table.nameBigCamel}ByWrapper")
-    // url : http://127.0.0.1:8899/thd/cg/queryLikeByPage
-    public Message queryByWrapper(@RequestBody ${table.nameBigCamel}Entity entity){
-        QueryWrapper<${table.nameBigCamel}Entity> query = new QueryWrapper<>();
-        query.eq("user_name","c");
-        List<${table.nameBigCamel}Entity> list = this.${table.nameCamel}ServiceImpl.queryByWrapper(query);
-        return Message.success(list);
-    }
-
-    @ResponseBody
-    @RequestMapping("/queryAll${table.nameBigCamel}ToMapKey")
-    // url : http://127.0.0.1:8899/thd/cg/queryAll${table.nameBigCamel}ToMapKey
-    public Message queryAll${table.nameBigCamel}ToMapKey(){
-        QueryWrapper<${table.nameBigCamel}Entity> query = new QueryWrapper<>();
-        query.eq("user_name","c");
-        Map<String,${table.nameBigCamel}Entity> list = this.${table.nameCamel}ServiceImpl.queryAllToMapKey();
-        return Message.success(list);
-    }
-
-
-
-
-    @ResponseBody
-    @RequestMapping("/insert${table.nameBigCamel}Batch")
-    // url : http://127.0.0.1:8899/thd/cg/insert${table.nameBigCamel}Batch
-    public Message insert${table.nameBigCamel}Batch(){
-
-        List<${table.nameBigCamel}Entity> l = new ArrayList<${table.nameBigCamel}Entity>();
-        for(int i = 0 , j = 10 ; i < j ; i++){
-            ${table.nameBigCamel}Entity entity = new ${table.nameBigCamel}Entity();
-            entity.setId("id_" + i );
-            entity.setUserAge(i);
-            entity.setUserBirthday(new Date());
-            entity.setUserName("devil13th_" + i);
-            l.add(entity);
-
-        }
-        this.${table.nameCamel}ServiceImpl.insertBatch(l);
-        return Message.success("Success");
-    }
-
-
-
+	/**
+	 * 删除数据
+	 *
+	 * @param ${table.pkColumn.nameCamel}
+	 * @return
+	 */
+	@DeleteMapping("/delete${table.nameBigCamel}/{${table.pkColumn.nameCamel}}")
+	@ResponseBody
+	public Message delete${table.nameBigCamel}(@PathVariable ${table.pkColumn.dataType} ${table.pkColumn.nameCamel}) {
+		${table.nameCamel}Service.isDelete(${table.pkColumn.nameCamel});
+		return sendSuccessMessage();
+	}
 
 
 
 }
+
