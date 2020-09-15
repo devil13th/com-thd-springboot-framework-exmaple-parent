@@ -42,6 +42,7 @@ public class LoginController extends BasicController {
     private RedisTemplate redisTemplate;
     @RequestMapping("/login")
     // url : http://127.0.0.1:8899/thd/login?userName=wsl&credential=123456
+    // url : http://127.0.0.1:8899/thd/login?userName=zhangsan&credential=123456
     public String login(ShiroUser user) {
 
         this.getLogger().info("login()");
@@ -62,7 +63,7 @@ public class LoginController extends BasicController {
             //进行验证，这里可以捕获异常，然后返回对应信息
             subject.login(usernamePasswordToken);
 
-
+/*
             this.getLogger().info(" ------------------ 认证 ---------------------");
             String sessionId =  SecurityUtils.getSubject().getSession().getId().toString();
             SecurityUtils.getSubject().getSession().setAttribute("userName",user.getUserName());
@@ -93,6 +94,8 @@ public class LoginController extends BasicController {
 
 //            subject.checkRole("admin");
 //            subject.checkPermissions("query", "add");
+
+ */
         } catch (AuthenticationException e) {
             e.printStackTrace();
             return "账号或密码错误！";
@@ -233,7 +236,8 @@ public class LoginController extends BasicController {
     }
 
     @RequestMapping("/perm/add")
-    @RequiresPermissions(value={"add"})
+//    @RequiresPermissions(value={"add"})
+    @RequiresPermissions("add")
     // url : http://127.0.0.1:8899/thd/perm/add
     public String perm() {
         SecurityUtils.getSubject().getSession().touch();
@@ -243,7 +247,7 @@ public class LoginController extends BasicController {
         return "perm/add";
     }
     @RequestMapping("/perm/query")
-    @RequiresPermissions(value={"query"})
+    @RequiresPermissions("query")
     // url : http://127.0.0.1:8899/thd/perm/query
     public String query() {
         SecurityUtils.getSubject().getSession().touch();
@@ -302,7 +306,10 @@ public class LoginController extends BasicController {
         Session session = SecurityUtils.getSecurityManager().getSession(sk);
         this.getLogger().info("Subject:" + SecurityUtils.getSubject());
         this.getLogger().info("session Id:" + session.getId());
-        this.getLogger().info("principal:" + SecurityUtils.getSubject().getPrincipal());
+        this.getLogger().info("principal:" +SecurityUtils.getSubject().getPrincipal());
+        if(null != SecurityUtils.getSubject().getPrincipal()){
+            this.getLogger().info("principal:" + ((ShiroUser)SecurityUtils.getSubject().getPrincipal()).getUserName());
+        }
         this.getLogger().info("isAuthenticated:" + SecurityUtils.getSubject().isAuthenticated());
         this.getLogger().info("attribute username:" + session.getAttribute("userName"));
         return "showInfo!";
