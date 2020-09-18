@@ -256,6 +256,21 @@ public class LoginController extends BasicController {
         this.getLogger().info("attribute username:" + session.getAttribute("userName"));
         return "perm/query";
     }
+
+    @RequiresRoles("admin")
+    @RequestMapping("/role/add")
+    // url : http://127.0.0.1:8899/thd/role/add
+    public String roleAdd() {
+        SecurityUtils.getSubject().getSession().touch();
+        SessionKey sk = new DefaultSessionKey(SecurityUtils.getSubject().getSession().getId());
+        Session session = SecurityUtils.getSecurityManager().getSession(sk);
+        this.getLogger().info("attribute username:" + session.getAttribute("userName"));
+        return "role/add";
+    }
+
+
+
+
     @RequestMapping("/dynamicPerm")
     @RequiresPermissions(value={"dynamicPerm"})
     // url : http://127.0.0.1:8899/thd/dynamicPerm
@@ -365,4 +380,72 @@ public class LoginController extends BasicController {
 
         return "SUCCESS";
     }
+
+    /**
+     * 在shiroConfig中使用 map.put("/testRole","prems"); 配置可访问此URL的权限
+     * @return
+     */
+    @RequestMapping("/testPerm")
+    public String testPerm(){
+        this.getLogger().info("principal:" + ((ShiroUser)SecurityUtils.getSubject().getPrincipal()).getUserName());
+        return "testPerm";
+    }
+
+    /**
+     * 在shiroConfig中使用 map.put("/testRoleAdmin","prems") 配置可访问此URL的权限
+     * @return
+     */
+    @RequestMapping("/testPermAdd")
+    public String testPermAdd(){
+        this.getLogger().info("principal:" + ((ShiroUser)SecurityUtils.getSubject().getPrincipal()).getUserName());
+        return "testPermAdd";
+    }
+    /**
+     * 不在shiroConfig中配置可访问此URL的权限,而是在该方法中加@RequiresPermissions注释
+     * @return
+     */
+    @RequiresPermissions("add")
+    @RequestMapping("/testPermAdd2")
+    public String testPermAdd2(){
+        this.getLogger().info("principal:" + ((ShiroUser)SecurityUtils.getSubject().getPrincipal()).getUserName());
+        return "testPermAdd2";
+    }
+
+    /**
+     * 在shiroConfig中使用 map.put("/testPerm","prems") 配置 可访问此URL的角色
+     * @return
+     */
+    @RequestMapping("/testRole")
+    public String testRole(){
+        this.getLogger().info("principal:" + ((ShiroUser)SecurityUtils.getSubject().getPrincipal()).getUserName());
+        return "testRole";
+    }
+
+    /**
+     * 在shiroConfig中使用 map.put("/testRoleAdmin","roles[admin]") 可访问此URL的角色
+     * @return
+     */
+    @RequestMapping("/testRoleAdmin")
+    public String testRoleAdmin(){
+        this.getLogger().info("principal:" + ((ShiroUser)SecurityUtils.getSubject().getPrincipal()).getUserName());
+        return "testRoleAdmin";
+    }
+
+    /**
+     * 不在shiroConfig中配置可访问此URL的角色,而是在该方法中加@RequiresRoles注释
+     * 通过注释进行角色验证的过程使用AOP完成的 ， 而不是Filter，验证不通过可以通过定义全局异常处理器(参见ShiroExceptionHandlerController(@RestControllerAdvice注释的Controller))进行处理
+     * @return
+     */
+    @RequiresRoles("admin")
+    @RequestMapping("/testRoleAdmin2")
+    public String testRoleAdmin2(){
+        this.getLogger().info("principal:" + ((ShiroUser)SecurityUtils.getSubject().getPrincipal()).getUserName());
+        return "testRoleAdmin2";
+    }
+
+
+
+
+
+
 }

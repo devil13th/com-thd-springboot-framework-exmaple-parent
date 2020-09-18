@@ -42,11 +42,15 @@ public class ShiroServiceImpl implements ShiroService {
         //wsl有query和add权限，zhangsan只有一个query权限
         ShiroPermissions permissions1 = new ShiroPermissions("1","query");
         ShiroPermissions permissions2 = new ShiroPermissions("2","add");
+        ShiroPermissions permissions3 = new ShiroPermissions("2","/testPermAdd");
+
         Set<ShiroPermissions> permissionsSet = new HashSet<>();
         Set<ShiroPermissions> permissionsSet1 = new HashSet<>();
         permissionsSet.add(permissions1);
         permissionsSet.add(permissions2);
+        permissionsSet.add(permissions3);
         permissionsSet1.add(permissions1);
+        permissionsSet1.add(permissions3);
 
 
         // 角色 admin
