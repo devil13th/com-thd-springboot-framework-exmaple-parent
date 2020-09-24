@@ -1,10 +1,10 @@
 package com.thd.springboot.framework.example.web;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+
 import com.thd.springboot.framework.shiro.bean.ShiroUser;
 import com.thd.springboot.framework.shiro.service.ShiroService;
 import com.thd.springboot.framework.shiro.token.PhoneMessageToken;
+import com.thd.springboot.framework.utils.JacksonUtil;
 import com.thd.springboot.framework.web.BasicController;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -103,6 +103,11 @@ public class LoginController extends BasicController {
             e.printStackTrace();
             return "没有权限";
         }
+
+
+        System.out.println(JacksonUtil.objToJson(SecurityUtils.getSubject().getSession()));
+        System.out.println(JacksonUtil.objToJson(SecurityUtils.getSubject().getPrincipal()));
+
         return "login success";
     }
 
@@ -355,15 +360,15 @@ public class LoginController extends BasicController {
         this.redisTemplate.opsForValue().set(username,u);
 
 
-        String jsonStr = JSON.toJSONString(u, SerializerFeature.WriteClassName);
-        this.getLogger().info(jsonStr);
-
-        try{
-            ShiroUser u2 = JSON.parseObject(jsonStr,ShiroUser.class);
-            System.out.println(u2);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+//        String jsonStr = JSON.toJSONString(u, SerializerFeature.WriteClassName);
+//        this.getLogger().info(jsonStr);
+//
+//        try{
+//            ShiroUser u2 = JSON.parseObject(jsonStr,ShiroUser.class);
+//            System.out.println(u2);
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
 
 
 

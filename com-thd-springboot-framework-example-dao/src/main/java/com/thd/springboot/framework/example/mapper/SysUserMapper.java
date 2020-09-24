@@ -1,6 +1,6 @@
 package com.thd.springboot.framework.example.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.thd.springboot.framework.db.mapper.BasicMapper;
 import com.thd.springboot.framework.example.entity.SysUser;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -13,7 +13,7 @@ import java.util.Map;
  **/
 @Mapper
 @Repository
-public interface SysUserMapper extends BaseMapper<SysUser> {
+public interface SysUserMapper extends BasicMapper<SysUser> {
     @Select("select * from sys_user where user_id=#{id}")
     public SysUser getNameById(@Param("id") long id);
 

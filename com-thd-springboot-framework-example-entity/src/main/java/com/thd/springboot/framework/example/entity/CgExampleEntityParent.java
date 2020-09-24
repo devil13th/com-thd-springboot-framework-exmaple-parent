@@ -1,23 +1,22 @@
 package com.thd.springboot.framework.example.entity;
 
+import com.thd.springboot.framework.entity.BasicEntity;
 import lombok.Data;
 
 import java.util.Date;
-import com.thd.springboot.framework.db.entity.BasicEntity;
-import com.baomidou.mybatisplus.annotation.TableField;
 
 @Data
 public class  CgExampleEntityParent extends BasicEntity<String> {
     // 主键 - PK
-    @TableField("id")
+//    @TableField("id")
     private String id;
     // 姓名
-    @TableField("user_name")
+//    @TableField("user_name")
     private String userName;
     // 年龄
-    @TableField("user_age")
+//    @TableField("user_age")
     private Integer userAge;
     // 生日
-    @TableField("user_birthday")
+//    @TableField("user_birthday")
     private Date userBirthday;
 }

@@ -1,6 +1,5 @@
 package com.thd.springboot.framework.example.web;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageInfo;
 import com.thd.springboot.framework.example.entity.CgExampleEntity;
 import com.thd.springboot.framework.example.service.CgExampleService;
@@ -97,26 +96,6 @@ public class CgExampleController extends BasicController {
         return Message.success(pi);
     }
 
-
-    @ResponseBody
-    @RequestMapping("/queryCgExampleByWrapper")
-    // url : http://127.0.0.1:8899/thd/cg/queryLikeByPage
-    public Message queryByWrapper(@RequestBody CgExampleEntity entity){
-        QueryWrapper<CgExampleEntity> query = new QueryWrapper<>();
-        query.eq("user_name","c");
-        List<CgExampleEntity> list = this.cgExampleServiceImpl.queryByWrapper(query);
-        return Message.success(list);
-    }
-
-    @ResponseBody
-    @RequestMapping("/queryAllCgExampleToMapKey")
-    // url : http://127.0.0.1:8899/thd/cg/queryAllCgExampleToMapKey
-    public Message queryAllCgExampleToMapKey(){
-        QueryWrapper<CgExampleEntity> query = new QueryWrapper<>();
-        query.eq("user_name","c");
-        Map<String,CgExampleEntity> list = this.cgExampleServiceImpl.queryAllToMapKey();
-        return Message.success(list);
-    }
 
 
 

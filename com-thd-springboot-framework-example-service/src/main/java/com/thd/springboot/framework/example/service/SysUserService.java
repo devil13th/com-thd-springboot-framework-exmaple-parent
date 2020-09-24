@@ -26,7 +26,6 @@ public interface SysUserService {
     public List<Map<String,String>> selectAllForMap();
     public Map<String,SysUser> selectAllForMapKey();
 
-    // 测试mybatis-plugs 方法
-    public SysUser queryOneByName(String name);
+
 
 }

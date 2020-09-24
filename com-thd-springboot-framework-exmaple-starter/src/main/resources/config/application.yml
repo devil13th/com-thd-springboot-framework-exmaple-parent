@@ -88,12 +88,12 @@ spring:
         min-idle: 10
 ############################ Db - mybatis ############################
 
-#mybatis:
-#  mapper-locations: classpath:com/thd/springboot/framework/example/mapper/*.xml #这里是mapper的配置文件
-#  # 这里是实体类的包 添加这个配置后就不用在mapper.xml配置文件中aliases了
-#  type-aliases-package: com.thd.springboot.framework.example.entity
-#  configuration:
-#    map-underscore-to-camel-case: true # 驼峰属性与数据库字段下划线自动转换
+mybatis:
+  mapper-locations: classpath:com/thd/springboot/framework/example/mapper/*.xml #这里是mapper的配置文件
+  # 这里是实体类的包 添加这个配置后就不用在mapper.xml配置文件中aliases了
+  type-aliases-package: com.thd.springboot.framework.example.entity
+  configuration:
+    map-underscore-to-camel-case: true # 驼峰属性与数据库字段下划线自动转换
 ############################ Db - mybatis - 分页插件 ############################
 pagehelper: ## mybatis分页
   ##数据库方言
@@ -105,11 +105,12 @@ pagehelper: ## mybatis分页
   params:
     count: countSql
 ############################ Db - mybatis-plugin - mybatis插件 ############################
-mybatis-plus:
-  configuration:
-    ## 打印日志
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-############################ shiro ############################
+#mybatis-plus:
+#  configuration:
+#    ## 打印日志
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+############################ 启用 shiro ############################
 shiro:
   enable: true
   redis-key-prefix:

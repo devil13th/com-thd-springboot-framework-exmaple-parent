@@ -78,14 +78,14 @@ public class SysUserController extends BasicController {
 //    }
 
 
-
-    @RequestMapping("/queryOneyName/{name}")
-    @ResponseBody
-    //url : http://127.0.0.1:8899/thd/sysUser/queryOneyName/user_01
-    public Message queryOneyName(@PathVariable String name){
-        SysUser u = this.sysUserService.queryOneByName(name);
-        return Message.success(u);
-    }
+//
+//    @RequestMapping("/queryOneyName/{name}")
+//    @ResponseBody
+//    //url : http://127.0.0.1:8899/thd/sysUser/queryOneyName/user_01
+//    public Message queryOneyName(@PathVariable String name){
+//        SysUser u = this.sysUserService.queryOneByName(name);
+//        return Message.success(u);
+//    }
 
 
 
