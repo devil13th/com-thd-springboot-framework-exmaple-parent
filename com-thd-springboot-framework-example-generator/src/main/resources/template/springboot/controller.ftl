@@ -1,10 +1,9 @@
-package ${coding.controllerPackageName};
-
+package ${coding.basicPackageName}.${coding.controllerPackageName};
 import com.lenovo.gsc.tech.framework.model.Message;
 import com.lenovo.gsc.tech.framework.model.Pager;
 import com.lenovo.gsc.tech.framework.base.controller.BasicController;
-import ${coding.entityPackageName}.${table.nameBigCamel}Entity;
-import ${coding.servicePackageName}.${table.nameBigCamel}Service;
+import ${coding.basicPackageName}.${coding.servicePackageName}.${table.nameBigCamel}Service;
+import ${coding.basicPackageName}.${coding.entityPackageName}.${table.nameBigCamel}Entity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +27,14 @@ public class  ${table.nameBigCamel}Controller extends BasicController{
 	/**
 	 * 添加数据
 	 */
-	@PostMapping(value = "/add${table.nameBigCamel}")
+	@PostMapping(value = "/insert${table.nameBigCamel}")
 	@ResponseBody
-	public Message add${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity  ${table.nameCamel}) {
+	public Message insert${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity  ${table.nameCamel}) {
 		// 生成主键
 		if(StringUtils.isEmpty(${table.nameCamel}.get${table.pkColumn.nameBigCamel}())){
 			${table.nameCamel}.set${table.pkColumn.nameBigCamel}(UUID.randomUUID().toString().replace("-",""));
 		}
-		${table.nameCamel}Service.add(${table.nameCamel});
+		${table.nameCamel}Service.insert(${table.nameCamel});
 		return sendSuccessMessage(${table.nameCamel});
 	}
 
@@ -58,10 +57,10 @@ public class  ${table.nameBigCamel}Controller extends BasicController{
 	 * @param ${table.pkColumn.nameCamel}
 	 * @return
 	 */
-	@GetMapping("/find${table.nameBigCamel}ById/{${table.pkColumn.nameCamel}}")
+	@GetMapping("/query${table.nameBigCamel}ById/{${table.pkColumn.nameCamel}}")
 	@ResponseBody
-	public Message find${table.nameBigCamel}ById(@PathVariable ${table.pkColumn.dataType} ${table.pkColumn.nameCamel}) {
-		 ${table.nameBigCamel}Entity  ${table.nameCamel}  =  ${table.nameCamel}Service.findById(${table.pkColumn.nameCamel});
+	public Message query${table.nameBigCamel}ById(@PathVariable ${table.pkColumn.dataType} ${table.pkColumn.nameCamel}) {
+		 ${table.nameBigCamel}Entity  ${table.nameCamel}  =  ${table.nameCamel}Service.queryById(${table.pkColumn.nameCamel});
 		if( ${table.nameCamel} == null){
 			return sendFailureMessage("No qualifying record!");
 		}
