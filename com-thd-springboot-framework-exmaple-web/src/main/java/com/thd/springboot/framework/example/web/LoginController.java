@@ -165,6 +165,7 @@ public class LoginController extends BasicController {
         // 生成6位随机数
         String code =  UUID.randomUUID().toString().replace("-","").substring(0,6);
         // 保存到session中
+        // 这里是保存到session中，实际上可以将该验证码发送至登录人的手机号，然后将手机号和验证码保存到Redis中，在Realm中可以根据手机号(pricipal)获取验证码(Credentials)就可以了
         SecurityUtils.getSubject().getSession().setAttribute("validateCode",code);
 
         return code;
