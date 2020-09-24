@@ -24,16 +24,16 @@ public class MakeCode {
     public void markCode(String tableName) throws Exception{
         util.createCode(tableName,"entity.ftl","${table.nameBigCamel}Entity.java");
         util.createCode(tableName,"entityParent.ftl","${table.nameBigCamel}EntityParent.java");
-        util.createCode(tableName,"mapper.ftl","${table.nameBigCamel}Mapper.xml");
         util.createCode(tableName,"dao.ftl","${table.nameBigCamel}Mapper.java");
+        util.createCode(tableName,"mapper.ftl","${table.nameBigCamel}Mapper.xml");
+        util.createCode(tableName,"example.ftl","example.txt");
         util.createCode(tableName,"service.ftl","${table.nameBigCamel}Service.java");
         util.createCode(tableName,"serviceImpl.ftl","${table.nameBigCamel}ServiceImpl.java");
-        util.createCode(tableName,"controller.ftl","${table.nameBigCamel}Controller.java");
-        util.createCode(tableName,"example.ftl","example.txt");
-        util.createCode(tableName,"viewList.ftl","${table.nameBigCamel}List.vue");
-        util.createCode(tableName,"viewForm.ftl","${table.nameBigCamel}Form.vue");
-        util.createCode(tableName,"viewApi.ftl","${table.nameBigCamel}Api.js");
-        util.createCode(tableName,"viewOther.ftl","${table.nameBigCamel}Other.js");
+//        util.createCode(tableName,"controller.ftl","${table.nameBigCamel}Controller.java");
+//        util.createCode(tableName,"viewList.ftl","${table.nameBigCamel}List.vue");
+//        util.createCode(tableName,"viewForm.ftl","${table.nameBigCamel}Form.vue");
+//        util.createCode(tableName,"viewApi.ftl","${table.nameBigCamel}Api.js");
+//        util.createCode(tableName,"viewOther.ftl","${table.nameBigCamel}Other.js");
 
     }
 

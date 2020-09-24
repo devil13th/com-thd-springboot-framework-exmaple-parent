@@ -25,7 +25,7 @@ public class CgExampleServiceImpl extends BasicServiceImpl<CgExampleEntity> impl
 
     public List queryAllCgExample(){
         CgExampleEntity queryCondition = new CgExampleEntity();
-        return cgExampleMapper.queryEq(null);
+        return cgExampleMapper.queryListEq(null);
     };
 
     public CgExampleEntity queryCgExampleById(String id){
@@ -34,11 +34,11 @@ public class CgExampleServiceImpl extends BasicServiceImpl<CgExampleEntity> impl
 
 
     public List<CgExampleEntity> queryCgExampleEq(CgExampleEntity entity){
-        return cgExampleMapper.queryEq(entity);
+        return cgExampleMapper.queryListEq(entity);
     }
 
     public List<CgExampleEntity> queryCgExampleLike(CgExampleEntity entity){
-        return cgExampleMapper.queryLike(entity);
+        return cgExampleMapper.queryListLike(entity);
     }
 
     public Map<String,CgExampleEntity> queryAllToMapKey(){

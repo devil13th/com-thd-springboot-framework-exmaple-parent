@@ -23,7 +23,7 @@ public interface SysUserMapper extends BasicMapper<SysUser> {
 //    public int insert(SysUser user);
 
     //插入用户
-    int insert(SysUser user);
+    Integer insert(SysUser user);
 
     //根据id查询
     SysUser selectById(String id);

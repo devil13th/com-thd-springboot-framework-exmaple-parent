@@ -61,7 +61,7 @@
         </if>
     </sql>
 
-    <insert id="add" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+    <insert id="insert" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
         insert into cg_example(
             `id`,
             `user_name`,
@@ -129,7 +129,7 @@
 	    where `id`=#{id}
 	</update>
 
-    <select id="queryEq" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+    <select id="queryListEq" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
         select
         <include refid="column_list" />
         from cg_example
@@ -137,7 +137,7 @@
 
     </select>
 
-    <select id="queryLike" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+    <select id="queryListLike" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
         select
         <include refid="column_list" />
         from cg_example
@@ -157,6 +157,14 @@
 	<select id="queryById" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
 		select <include refid="column_list" /> from cg_example where is_deleted=0 and `id` = #{id}
 	</select>
+
+    <select id="queryByCondition" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgExampleEntity">
+        select
+        <include refid="column_list" />
+        from
+        cg_example
+        <include refid="where_eq" />
+    </select>
 
 
 	<select id="queryAllToMapKey" resultType="com.thd.springboot.framework.example.entity.CgExampleEntity">

@@ -2,27 +2,39 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:postgresql://10.122.49.55:15432/PROJ_DSCQM?useUnicode=true&characterEncoding=UTF-8
-    username: proj_dscqm
-    password: proj_dscqm
-    driver-class-name: org.postgresql.Driver
-dbType: pgsql
+    ######## pg
+#    url: jdbc:postgresql://10.122.49.55:15432/PROJ_DSCQM?useUnicode=true&characterEncoding=UTF-8
+#    username: proj_dscqm
+#    password: proj_dscqm
+#    driver-class-name: org.postgresql.Driver
+    ########mysql
+    url: jdbc:mysql://127.0.0.1/devil13th_pm?serverTimezone=Asia/Shanghai&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123456
+    #    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+dbType: mysql
 # 表空间
-schema: dscqm_pcg
+schema: devil13th_pm
 # 模板公共路径
-templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-parent\com-thd-springboot-framework-generator\src\main\resources\template\ssm\
+#templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-parent\com-thd-springboot-framework-generator\src\main\resources\template\springboot\
+templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-exmaple-parent\com-thd-springboot-framework-example-generator\src\main\resources\template\springboot\
 #  生成文件公共路径
 targetFolderPath: D:\deleteme\cg\
 # 包配置
 coding:
-  servicePackageName: com.thd.springboot.framework.example.service
-  mapperPackageName: com.thd.springboot.framework.example.mapper
-  controllerPackageName: com.thd.springboot.framework.example.controller
-  entityPackageName: com.thd.springboot.framework.example.entity
+  basicPackageName: com.thd.springboot.framework.example
+  servicePackageName: ${table.nameForPackage}.service
+  mapperPackageName: ${table.nameForPackage}.mapper
+  controllerPackageName: ${table.nameForPackage}.controller
+  entityPackageName: ${table.nameForPackage}.entity
 # 自定义的属性 - map类型
 
 custom:
   map:
+    a: 2
+    b: 4
+    c: 5
     name: codeGen
     version: 1.0
 

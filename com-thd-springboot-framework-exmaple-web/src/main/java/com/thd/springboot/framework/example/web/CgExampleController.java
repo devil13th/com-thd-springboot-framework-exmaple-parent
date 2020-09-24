@@ -38,7 +38,7 @@ public class CgExampleController extends BasicController {
     @PostMapping("/addCgExample")
     // url : http://127.0.0.1:8899/thd/cg/addCgExample
     public Message addCgExample(@RequestBody CgExampleEntity entity){
-        this.cgExampleServiceImpl.add(entity);
+        this.cgExampleServiceImpl.insert(entity);
         return Message.success("SUCCESS");
     }
     @ResponseBody
@@ -55,7 +55,7 @@ public class CgExampleController extends BasicController {
     @DeleteMapping("/physicsDeleteCgExample/{id}")
     // url : http://127.0.0.1:8899/thd/cg/physicsDeleteCgExample/15
     public Message physicsDeleteCgExample(@PathVariable String id){
-        this.cgExampleServiceImpl.physicsDelete(id);
+        this.cgExampleServiceImpl.deletePhysics(id);
         return Message.success("SUCCESS");
     }
 
@@ -64,7 +64,7 @@ public class CgExampleController extends BasicController {
     @DeleteMapping("/logicDeleteCgExample/{id}")
     // url : http://127.0.0.1:8899/thd/cg/logicDeleteCgExample/15
     public Message logicDeleteCgExample(@PathVariable String id){
-        this.cgExampleServiceImpl.logicDelete(id);
+        this.cgExampleServiceImpl.deleteLogic(id);
         return Message.success("SUCCESS");
     }
 
@@ -83,7 +83,7 @@ public class CgExampleController extends BasicController {
     @RequestMapping("/queryCgExampleEqByPage")
     // url : http://127.0.0.1:8899/thd/cg/queryCgExampleEqByPage
     public Message queryCgExampleEqByPage(@RequestBody CgExampleEntity entity){
-        PageInfo pi = this.cgExampleServiceImpl.queryEqByPage(entity);
+        PageInfo pi = this.cgExampleServiceImpl.queryListEqByPage(entity);
         return Message.success(pi);
     }
 
@@ -92,7 +92,7 @@ public class CgExampleController extends BasicController {
     @RequestMapping("/queryCgExampleLikeByPage")
     // url : http://127.0.0.1:8899/thd/cg/queryCgExampleLikeByPage
     public Message queryCgExampleLikeByPage(@RequestBody CgExampleEntity entity){
-        PageInfo pi = this.cgExampleServiceImpl.queryLikeByPage(entity);
+        PageInfo pi = this.cgExampleServiceImpl.queryListLikeByPage(entity);
         return Message.success(pi);
     }
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ${table.nameBigCamel}Mapper extends BaseMapper<${table.nameBigCamel}Entity> {
+public interface ${table.nameBigCamel}Mapper extends BasicMapper<${table.nameBigCamel}Entity> {
     
     // 批量插入
     public void insertBatch(@Param(value="list") List<${table.nameBigCamel}Entity> list);
