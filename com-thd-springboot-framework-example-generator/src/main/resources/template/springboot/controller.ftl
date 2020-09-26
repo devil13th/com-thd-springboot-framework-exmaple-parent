@@ -35,7 +35,7 @@ public class  ${table.nameBigCamel}Controller extends BasicController{
 			${table.nameCamel}.set${table.pkColumn.nameBigCamel}(UUID.randomUUID().toString().replace("-",""));
 		}
 		${table.nameCamel}Service.insert(${table.nameCamel});
-		return sendSuccessMessage(${table.nameCamel});
+		return success(${table.nameCamel});
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class  ${table.nameBigCamel}Controller extends BasicController{
 	@ResponseBody
 	public Message update${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity  ${table.nameCamel}) {
 		 ${table.nameCamel}Service.update(${table.nameCamel});
-		return sendSuccessMessage(${table.nameCamel});
+		return success(${table.nameCamel});
 	}
 
 	/**
@@ -62,9 +62,9 @@ public class  ${table.nameBigCamel}Controller extends BasicController{
 	public Message query${table.nameBigCamel}ById(@PathVariable ${table.pkColumn.dataType} ${table.pkColumn.nameCamel}) {
 		 ${table.nameBigCamel}Entity  ${table.nameCamel}  =  ${table.nameCamel}Service.queryById(${table.pkColumn.nameCamel});
 		if( ${table.nameCamel} == null){
-			return sendFailureMessage("No qualifying record!");
+			return error("No qualifying record!");
 		}
-		return sendSuccessMessage(${table.nameCamel});
+		return success(${table.nameCamel});
 	}
 
 	/**
@@ -76,8 +76,8 @@ public class  ${table.nameBigCamel}Controller extends BasicController{
 	@GetMapping("/find${table.nameBigCamel}Page")
 	@ResponseBody
 	public Message find${table.nameBigCamel}Page(${table.nameBigCamel}Entity ${table.nameCamel}) {
-		Pager<${table.nameBigCamel}Entity> pager = ${table.nameCamel}Service.findPageByLike(${table.nameCamel});
-		return sendSuccessMessage(pager);
+		PageInfo<${table.nameBigCamel}Entity> pager = ${table.nameCamel}Service.queryListLikeByPage(${table.nameCamel});
+		return success(pager);
 	}
 
 	/**
@@ -89,8 +89,8 @@ public class  ${table.nameBigCamel}Controller extends BasicController{
 	@DeleteMapping("/delete${table.nameBigCamel}/{${table.pkColumn.nameCamel}}")
 	@ResponseBody
 	public Message delete${table.nameBigCamel}(@PathVariable ${table.pkColumn.dataType} ${table.pkColumn.nameCamel}) {
-		${table.nameCamel}Service.isDelete(${table.pkColumn.nameCamel});
-		return sendSuccessMessage();
+		${table.nameCamel}Service.deleteLogic(${table.pkColumn.nameCamel});
+		return success();
 	}
 
 

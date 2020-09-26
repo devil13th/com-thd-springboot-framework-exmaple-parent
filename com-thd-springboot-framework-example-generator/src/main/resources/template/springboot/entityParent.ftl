@@ -5,7 +5,7 @@ import com.thd.springboot.framework.entity.BasicEntity;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.lenovo.gsc.tech.framework.base.entity.BaseEntity;
+
 
 @Data
 public class  ${table.nameBigCamel}EntityParent extends BasicEntity {

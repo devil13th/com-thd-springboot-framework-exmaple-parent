@@ -2,7 +2,7 @@ package ${coding.basicPackageName}.${coding.mapperPackageName};
 import com.thd.springboot.framework.db.mapper.BasicMapper;
 import org.springframework.stereotype.Repository;
 import org.apache.ibatis.annotations.MapKey;
-import ${coding.basicPackageName}.${coding.mapperPackageName}.${table.nameBigCamel}Entity;
+import ${coding.basicPackageName}.${coding.entityPackageName}.${table.nameBigCamel}Entity;
 import java.util.Map;
 
 @Repository

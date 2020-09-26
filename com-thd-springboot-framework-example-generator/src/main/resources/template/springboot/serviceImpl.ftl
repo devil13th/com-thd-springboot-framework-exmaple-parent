@@ -3,7 +3,6 @@ package ${coding.basicPackageName}.${coding.servicePackageName}.impl;
 import com.github.pagehelper.Page;
 import com.thd.springboot.framework.db.mapper.BasicMapper;
 import com.thd.springboot.framework.db.service.BasicServiceImpl;
-
 import ${coding.basicPackageName}.${coding.servicePackageName}.${table.nameBigCamel}Service;
 import ${coding.basicPackageName}.${coding.entityPackageName}.${table.nameBigCamel}Entity;
 import ${coding.basicPackageName}.${coding.mapperPackageName}.${table.nameBigCamel}Mapper;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @Service("${table.nameCamel}Service")
 @Transactional
-public class ${table.nameBigCamel}ServiceImpl extends BaseServiceImpl<${table.nameBigCamel}Entity> implements ${table.nameBigCamel}Service {
+public class ${table.nameBigCamel}ServiceImpl extends BasicServiceImpl<${table.nameBigCamel}Entity> implements ${table.nameBigCamel}Service {
 
 	@Autowired
     private ${table.nameBigCamel}Mapper ${table.nameCamel}Mapper;

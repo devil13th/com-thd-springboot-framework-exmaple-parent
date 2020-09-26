@@ -148,7 +148,7 @@
 		select
         <include refid="column_list" />
         from <include refid="table_name"/>
-        <include refid="Example_Where_Clause" />
+        <include refid="where_eq" />
          <!--
         <if test="orderBy != null and orderBy != ''">
          order by ${get}orderBy}
@@ -162,7 +162,7 @@
 		select
         <include refid="column_list" />
         from <include refid="table_name"/>
-        <include refid="Like_Where_Clause" />
+        <include refid="where_like" />
         <!--
         <if test="orderBy != null and orderBy != ''">
          order by  ${get}orderBy}

@@ -73,7 +73,7 @@ public class CgExampleController extends BasicController {
 
     @ResponseBody
     @RequestMapping("/queryCgExampleById/{id}")
-    // url : http://127.0.0.1:8899/thd/cg/queryCgExample/2
+    // url : http://127.0.0.1:8899/thd/cg/queryCgExampleById/2
     public Message queryCgExample(@PathVariable String id){
         CgExampleEntity entity = this.cgExampleServiceImpl.queryCgExampleById(id);
         return Message.success(entity);

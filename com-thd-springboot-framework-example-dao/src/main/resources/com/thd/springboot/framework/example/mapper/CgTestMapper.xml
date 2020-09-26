@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thd.springboot.framework.example.mapper.CgTestMapper">
+    <!-- Result Map -->
+    <resultMap id="ResultMap" type="com.thd.springboot.framework.example.entity.CgTestEntity">
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_sex" property="userSex" />
+        <result column="user_mail" property="userMail" />
+        <result column="user_tel" property="userTel" />
+        <result column="user_birthday" property="userBirthday" />
+        <result column="user_status" property="userStatus" />
+        <result column="org_id" property="orgId" />
+    </resultMap>
+
+    <!-- 表名 -->
+    <sql id="table_name">
+        devil13th_pm.cg_test
+    </sql>
+
+    <!-- 所有字段 -->
+    <sql id="column_list">
+        cg_test.`user_id`, <!-- 0 用户 -->
+        cg_test.`user_name`, <!-- 1  -->
+        cg_test.`user_sex`, <!-- 2  -->
+        cg_test.`user_mail`, <!-- 3  -->
+        cg_test.`user_tel`, <!-- 4  -->
+        cg_test.`user_birthday`, <!-- 5  -->
+        cg_test.`user_status`, <!-- 6  -->
+        cg_test.`org_id` <!-- 7  -->
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="where_eq">
+        where is_deleted = 0
+        <if test="user_id != null ">
+            and cg_test.`user_id` = #{userId}
+        </if>
+        <if test="userName != null ">
+            and cg_test.`user_name` = #{userName}
+        </if>
+        <if test="userSex != null ">
+            and cg_test.`user_sex` = #{userSex}
+        </if>
+        <if test="userMail != null ">
+            and cg_test.`user_mail` = #{userMail}
+        </if>
+        <if test="userTel != null ">
+            and cg_test.`user_tel` = #{userTel}
+        </if>
+        <if test="userBirthday != null ">
+            and cg_test.`user_birthday` = #{userBirthday}
+        </if>
+        <if test="userStatus != null ">
+            and cg_test.`user_status` = #{userStatus}
+        </if>
+        <if test="orgId != null ">
+            and cg_test.`org_id` = #{orgId}
+        </if>
+    </sql>
+
+    <!-- like查询条件 -->
+    <sql id="where_like">
+        where is_deleted = 0
+        <if test="user_id != null ">
+            and cg_test.`user_id` like #{userId}
+        </if>
+        <if test="userName != null ">
+            and cg_test.`user_name` = #{userName}
+        </if>
+        <if test="userSex != null ">
+            and cg_test.`user_sex` = #{userSex}
+        </if>
+        <if test="userMail != null ">
+            and cg_test.`user_mail` = #{userMail}
+        </if>
+        <if test="userTel != null ">
+            and cg_test.`user_tel` = #{userTel}
+        </if>
+        <if test="userBirthday != null ">
+            and cg_test.`user_birthday` = #{userBirthday}
+        </if>
+        <if test="userStatus != null ">
+            and cg_test.`user_status` = #{userStatus}
+        </if>
+        <if test="orgId != null ">
+            and cg_test.`org_id` = #{orgId}
+        </if>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        insert into <include refid="table_name"/> (
+        `user_id`,
+        `user_name`,
+        `user_sex`,
+        `user_mail`,
+        `user_tel`,
+        `user_birthday`,
+        `user_status`,
+        `org_id`
+        )
+        values(
+        #{userId},
+        #{userName},
+        #{userSex},
+        #{userMail},
+        #{userTel},
+        #{userBirthday},
+        #{userStatus},
+        #{orgId}
+        )
+    </insert>
+
+    <!-- 根据id，修改记录 -->
+    <update id="update" parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        update <include refid="table_name"/> set
+        <trim  suffixOverrides="," >
+            <if test="userId != null ">
+                `user_id`=#{userId},
+            </if>
+            <if test="userName != null ">
+                `user_name`=#{userName},
+            </if>
+            <if test="userSex != null ">
+                `user_sex`=#{userSex},
+            </if>
+            <if test="userMail != null ">
+                `user_mail`=#{userMail},
+            </if>
+            <if test="userTel != null ">
+                `user_tel`=#{userTel},
+            </if>
+            <if test="userBirthday != null ">
+                `user_birthday`=#{userBirthday},
+            </if>
+            <if test="userStatus != null ">
+                `user_status`=#{userStatus},
+            </if>
+            <if test="orgId != null ">
+                `org_id`=#{orgId},
+            </if>
+        </trim>
+        where `user_id`=#{userId}
+    </update>
+
+
+    <delete id="deletePhysics" parameterType="String">
+        delete from <include refid="table_name"/> where `user_id` = #{userId}
+    </delete>
+
+    <update id="deleteLogic" parameterType="String">
+        update <include refid="table_name"/> set is_deleted=1 where `user_id` = #{userId}
+    </update>
+
+
+
+    <!-- 根据id查询 -->
+    <select id="queryById" resultMap="ResultMap" parameterType="String">
+        select <include refid="column_list" /> from <include refid="table_name"/> where is_deleted=0 and `user_id` = #{userId}
+    </select>
+
+    <!-- 根据条件查询唯一一条数据 -->
+    <select id="queryByCondition" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        select
+        <include refid="column_list" />
+        from
+        <include refid="table_name" />
+        <include refid="where_eq" />
+    </select>
+
+    <!-- 查询列表 -->
+    <select id="queryListEq" resultMap="ResultMap"
+            parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        select
+        <include refid="column_list" />
+        from <include refid="table_name"/>
+        <include refid="where_eq" />
+        <!--
+       <if test="orderBy != null and orderBy != ''">
+        order by #{orderBy}
+       </if>
+       -->
+    </select>
+
+    <!-- 查询列表 -->
+    <select id="queryListLike" resultMap="ResultMap"
+            parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        select
+        <include refid="column_list" />
+        from <include refid="table_name"/>
+        <include refid="where_like" />
+        <!--
+        <if test="orderBy != null and orderBy != ''">
+         order by  #{orderBy}
+        </if>
+        -->
+    </select>
+
+    <!-- 查询列表 返回map-->
+    <select id="queryAllToMapKey" resultType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        select
+        <include refid="column_list" />
+        from
+        <include refid="table_name"/>
+        <include refid="where_eq" />
+    </select>
+
+    <insert id="insertBatch" >
+        insert into <include refid="table_name"/>
+        (
+        user_name,
+        user_sex,
+        user_mail,
+        user_tel,
+        user_birthday,
+        user_status,
+        org_id
+        )
+        values
+        <foreach collection="list" item="r" index="index" separator=",">
+            (
+            #{r.userName},
+            #{r.userSex},
+            #{r.userMail},
+            #{r.userTel},
+            #{r.userBirthday},
+            #{r.userStatus},
+            #{r.orgId}
+            )
+        </foreach>
+    </insert>
+</mapper>
+
