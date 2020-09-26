@@ -27,7 +27,7 @@
 	<!-- 查询条件 -->
 	<sql id="where_eq">
 		where is_deleted = 0
-			<if test="${table.pkColumn.name} != null ">
+			<if test="${table.pkColumn.nameCamel} != null ">
                 and ${table.name}.`${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
             </if>
         <#list table.normalColumns as col>
@@ -57,7 +57,7 @@
 	<!-- like查询条件 -->
 	<sql id="where_like">
 		where is_deleted = 0
-        <if test="${table.pkColumn.name} != null ">
+        <if test="${table.pkColumn.nameCamel} != null ">
                 and ${table.name}.`${table.pkColumn.name}` like ${get}${table.pkColumn.nameCamel}}
             </if>
         <#list table.normalColumns as col>

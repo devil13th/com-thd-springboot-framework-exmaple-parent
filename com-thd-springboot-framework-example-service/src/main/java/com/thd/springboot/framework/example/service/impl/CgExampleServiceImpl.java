@@ -19,7 +19,7 @@ public class CgExampleServiceImpl extends BasicServiceImpl<CgExampleEntity> impl
     private CgExampleMapper cgExampleMapper;
 
     @Override
-    public BasicMapper<CgExampleEntity> basicMapper() {
+    public BasicMapper<CgExampleEntity> getMapper() {
         return cgExampleMapper;
     }
 

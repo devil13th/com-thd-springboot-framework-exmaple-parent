@@ -35,7 +35,7 @@
     <!-- 查询条件 -->
     <sql id="where_eq">
         where is_deleted = 0
-        <if test="user_id != null ">
+        <if test="userId != null ">
             and cg_test.`user_id` = #{userId}
         </if>
         <if test="userName != null ">
@@ -64,7 +64,7 @@
     <!-- like查询条件 -->
     <sql id="where_like">
         where is_deleted = 0
-        <if test="user_id != null ">
+        <if test="userId != null ">
             and cg_test.`user_id` like #{userId}
         </if>
         <if test="userName != null ">

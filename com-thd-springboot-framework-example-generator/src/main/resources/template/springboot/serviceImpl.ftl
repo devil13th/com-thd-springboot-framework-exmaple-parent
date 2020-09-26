@@ -21,7 +21,7 @@ public class ${table.nameBigCamel}ServiceImpl extends BasicServiceImpl<${table.n
     private ${table.nameBigCamel}Mapper ${table.nameCamel}Mapper;
 
 	@Override
-	public ${table.nameBigCamel}Mapper baseMapper() {
+	public ${table.nameBigCamel}Mapper getMapper() {
 		return ${table.nameCamel}Mapper;
 	}
 

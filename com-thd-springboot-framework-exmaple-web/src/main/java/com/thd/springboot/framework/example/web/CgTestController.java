@@ -56,7 +56,7 @@ public class  CgTestController extends BasicController {
 	@GetMapping("/queryCgTestById/{userId}")
 	@ResponseBody
 	public Message queryCgTestById(@PathVariable String userId) {
-		 CgTestEntity  cgTest  =  cgTestService.queryById(userId);
+		CgTestEntity  cgTest  =  cgTestService.queryById(userId);
 		if( cgTest == null){
 			return error("No qualifying record!");
 		}
@@ -72,7 +72,7 @@ public class  CgTestController extends BasicController {
 	@GetMapping("/findCgTestPage")
 	@ResponseBody
 	public Message findCgTestPage(CgTestEntity cgTest) {
-		PageInfo<CgTestEntity> pager = cgTestService.queryListLikeByPage(cgTest);
+		PageInfo<CgTestEntity> pager = cgTestService.queryListEqByPage(cgTest);
 		return success(pager);
 	}
 
