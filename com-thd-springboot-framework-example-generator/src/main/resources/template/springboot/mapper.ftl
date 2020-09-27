@@ -126,6 +126,11 @@
         update <include refid="table_name"/> set is_deleted=1 where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
     </update>
 
+    <update id="deleteLogicByCondition" parameterType="${table.pkColumn.dataType}">
+        update <include refid="table_name"/> set is_deleted=1
+        <include refid="where_eq" />
+    </update>
+
 
 
 	<!-- 根据id查询 -->
