@@ -14,7 +14,11 @@
 
     <!-- 表名 -->
     <sql id="table_name">
-        ${table.schema}.${table.name}
+        <#if dbType=="pgsql" || dbType="greenplum">
+            ${table.schema}.${table.name}
+        <#else>
+            ${table.name}
+        </#if>
     </sql>
 
 	<!-- 所有字段 -->
@@ -187,6 +191,7 @@
     <insert id="insertBatch" >
         insert into <include refid="table_name"/>
         (
+	    ${table.pkColumn.name},
             <#list table.normalColumns as col>
            ${col.name}<#if col_has_next>,</#if>
             </#list>
@@ -194,6 +199,7 @@
         values
         <foreach collection="list" item="r" index="index" separator=",">
             (
+		${get}r.${table.pkColumn.nameCamel}},
                 <#list table.normalColumns as col>
                 ${get}r.${col.nameCamel}}<#if col_has_next>,</#if>
                 </#list>

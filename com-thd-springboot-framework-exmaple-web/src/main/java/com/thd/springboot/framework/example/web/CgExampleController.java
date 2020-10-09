@@ -55,7 +55,7 @@ public class CgExampleController extends BasicController {
     @DeleteMapping("/physicsDeleteCgExample/{id}")
     // url : http://127.0.0.1:8899/thd/cg/physicsDeleteCgExample/15
     public Message physicsDeleteCgExample(@PathVariable String id){
-        this.cgExampleServiceImpl.deletePhysics(id);
+        this.cgExampleServiceImpl.deletePhysicsById(id);
         return Message.success("SUCCESS");
     }
 
@@ -64,7 +64,7 @@ public class CgExampleController extends BasicController {
     @DeleteMapping("/logicDeleteCgExample/{id}")
     // url : http://127.0.0.1:8899/thd/cg/logicDeleteCgExample/15
     public Message logicDeleteCgExample(@PathVariable String id){
-        this.cgExampleServiceImpl.deleteLogic(id);
+        this.cgExampleServiceImpl.deleteLogicById(id);
         return Message.success("SUCCESS");
     }
 
