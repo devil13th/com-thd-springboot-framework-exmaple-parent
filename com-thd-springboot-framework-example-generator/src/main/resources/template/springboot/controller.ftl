@@ -30,9 +30,7 @@ public class  ${table.nameBigCamel}Controller extends BasicController{
 	// url : http://127.0.0.1:8899/thd/${table.nameCamel}/insert${table.nameBigCamel}
 	public Message insert${table.nameBigCamel}(@RequestBody ${table.nameBigCamel}Entity  ${table.nameCamel}) {
 		// 生成主键
-		if(StringUtils.isEmpty(${table.nameCamel}.get${table.pkColumn.nameBigCamel}())){
-			${table.nameCamel}.set${table.pkColumn.nameBigCamel}(UUID.randomUUID().toString().replace("-",""));
-		}
+		${table.nameCamel}.set${table.pkColumn.nameBigCamel}(UUID.randomUUID().toString().replace("-",""));
 		${table.nameCamel}Service.insert(${table.nameCamel});
 		return success(${table.nameCamel});
 	}

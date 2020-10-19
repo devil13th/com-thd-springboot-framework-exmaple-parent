@@ -30,9 +30,7 @@ public class  CgTestController extends BasicController{
 	// url : http://127.0.0.1:8899/thd/cgTest/insertCgTest
 	public Message insertCgTest(@RequestBody CgTestEntity  cgTest) {
 		// 生成主键
-		if(StringUtils.isEmpty(cgTest.getUserId())){
-			cgTest.setUserId(UUID.randomUUID().toString().replace("-",""));
-		}
+		cgTest.setUserId(UUID.randomUUID().toString().replace("-",""));
 		cgTestService.insert(cgTest);
 		return success(cgTest);
 	}

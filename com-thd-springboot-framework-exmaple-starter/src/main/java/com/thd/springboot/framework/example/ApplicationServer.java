@@ -17,7 +17,6 @@ public class ApplicationServer {
     }
 
 
-
     public static void main(String[] args) {
         //System.setProperty("spring.devtools.restart.enabled", "false");
         ConfigurableApplicationContext ctx = SpringApplication.run(ApplicationServer.class, args);

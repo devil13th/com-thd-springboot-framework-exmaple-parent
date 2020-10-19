@@ -25,9 +25,6 @@ public class CgTestServiceImpl extends BasicServiceImpl<CgTestEntity> implements
 		return cgTestMapper;
 	}
 
-	@Override
-    public void insertBatch(List<CgTestEntity> list){
-        cgTestMapper.insertBatch(list);
-    }
+
 
 }

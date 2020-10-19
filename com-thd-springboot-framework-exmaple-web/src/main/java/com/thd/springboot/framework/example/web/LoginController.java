@@ -1,6 +1,7 @@
 package com.thd.springboot.framework.example.web;
 
 
+import com.thd.springboot.framework.model.Message;
 import com.thd.springboot.framework.shiro.bean.ShiroUser;
 import com.thd.springboot.framework.shiro.service.ShiroService;
 import com.thd.springboot.framework.shiro.token.PhoneMessageToken;
@@ -43,7 +44,7 @@ public class LoginController extends BasicController {
     @RequestMapping("/login")
     // url : http://127.0.0.1:8899/thd/login?userName=wsl&credential=123456
     // url : http://127.0.0.1:8899/thd/login?userName=zhangsan&credential=123456
-    public String login(ShiroUser user) {
+    public Message login(ShiroUser user) {
 
         this.getLogger().info("login()");
         //添加用户认证信息
@@ -51,7 +52,7 @@ public class LoginController extends BasicController {
 
         ShiroUser realUser = shiroService.loadUserByAccount(user.getUserName());
         if(realUser == null){
-            return "用户未找到";
+            return Message.error("用户未找到");
         }
 
 
@@ -98,17 +99,16 @@ public class LoginController extends BasicController {
  */
         } catch (AuthenticationException e) {
             e.printStackTrace();
-            return "账号或密码错误！";
+            return Message.error("账号或密码错误");
         } catch (AuthorizationException e) {
-            e.printStackTrace();
-            return "没有权限";
+            return Message.error("没有权限");
         }
 
 
         System.out.println(JacksonUtil.objToJson(SecurityUtils.getSubject().getSession()));
         System.out.println(JacksonUtil.objToJson(SecurityUtils.getSubject().getPrincipal()));
+        return Message.success(subject.getSession().getId());
 
-        return "login success";
     }
 
 

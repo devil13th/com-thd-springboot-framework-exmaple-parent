@@ -9,8 +9,8 @@ management:
 ############################ web ############################
 server:
   port: 8899
-  servlet:
-    context-path: /thd
+#  servlet:
+#    context-path: /thd
 
 
 
@@ -19,7 +19,7 @@ spring:
 ############################ Db ############################
   datasource:
     # 数据库的url、登录名、密码和数据库名
-    url: jdbc:mysql://127.0.0.1:3306/devil13th_pm?serverTimezone=UTC&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/devil13th_pm?serverTimezone=Asia/Shanghai&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
     password: 123456
     # 使用阿里的Druid连接池

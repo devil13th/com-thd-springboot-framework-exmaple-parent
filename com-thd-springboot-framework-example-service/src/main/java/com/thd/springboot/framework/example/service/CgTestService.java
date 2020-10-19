@@ -8,6 +8,4 @@ import java.util.Map;
 
 public interface CgTestService extends BasicService<CgTestEntity> {
 
-    // 批量插入
-    public void insertBatch(List<CgTestEntity> list);
 }

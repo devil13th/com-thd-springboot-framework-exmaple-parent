@@ -9,21 +9,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Data
 public class  CgTestEntityParent extends BasicEntity {
-    // 用户
+    // 主键
     private String userId;
-    // 
+    // 姓名
     private String userName;
-    // 
-    private Integer userSex;
-    // 
-    private String userMail;
-    // 
-    private String userTel;
-    // 
+    // 年龄
+    private Integer userAge;
+    // 生日
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date userBirthday;
-    // 
-    private String userStatus;
-    // 
-    private String orgId;
 }
