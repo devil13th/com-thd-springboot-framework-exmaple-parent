@@ -3,6 +3,8 @@
 <#assign listEnd="</#list>" />
 <#assign ifStart="<#if " />
 <#assign ifEnd="</#if> " />
+===========  DB信息  ==========
+${get}dbType}   ${dbType}
 ===========  表信息  ==========
 ${get}schema}   ${table.schema}
 ${get}table.name}   ${table.name}
