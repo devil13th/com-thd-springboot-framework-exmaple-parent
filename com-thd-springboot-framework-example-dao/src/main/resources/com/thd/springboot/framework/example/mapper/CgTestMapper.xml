@@ -58,10 +58,10 @@
                 and cg_test.`user_id` like #{userId}
             </if>
             <if test="userName != null ">
-                and cg_test.`user_name` = #{userName}
+                and cg_test.`user_name` like concat('%', #{userName},'%')
             </if>
             <if test="userAge != null ">
-                and cg_test.`user_age` = #{userAge}
+                and cg_test.`user_age` like concat('%', #{userAge},'%')
             </if>
             <if test="userBirthday != null ">
                 and cg_test.`user_birthday` = #{userBirthday}

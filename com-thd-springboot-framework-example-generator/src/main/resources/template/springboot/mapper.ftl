@@ -71,12 +71,11 @@
                 col.name!="create_time" &&
                 col.name!="modify_time"
             >
-            <#if col.dataType=="java.lang.String">
+            <#if col.dataType=="String">
             <if test="${col.nameCamel} != null and ${col.nameCamel} != '' ">
                 and ${table.name}.`${col.name}` like concat('%',${get}${col.nameCamel}},'%')
-                
             </if>
-            <#elseif col.dataType=="java.util.Date">
+            <#elseif col.dataType=="Date">
             <if test="${col.nameCamel} != null ">
                 and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
             </if>
