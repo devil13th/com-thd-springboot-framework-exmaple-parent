@@ -120,8 +120,26 @@
         where `${table.pkColumn.name}`=${get}${table.pkColumn.nameCamel}}
 	</update>
 
+    <!-- 批量修改记录 -->
+    <update id="updateBatch" >
+        update <include refid="table_name"/> set
+        <trim  suffixOverrides="," >
+            <#list table.normalColumns as col>
+            <if test="targetBean.${col.nameCamel} != null ">
+                `${col.name}`=${get}targetBean.${col.nameCamel}},
+            </if>
+            </#list>
+        </trim>
+        where
+        is_deleted = 0
+        <#list table.normalColumns as col>
+        <if test="conditionBean.${col.nameCamel} != null ">
+            and `${col.name}`=${get}conditionBean.${col.nameCamel}}
+        </if>
+        </#list>
+    </update>
 
-	 <delete id="deletePhysics" parameterType="${table.pkColumn.dataType}">
+	<delete id="deletePhysics" parameterType="${table.pkColumn.dataType}">
         delete from <include refid="table_name"/> where `${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
     </delete>
 

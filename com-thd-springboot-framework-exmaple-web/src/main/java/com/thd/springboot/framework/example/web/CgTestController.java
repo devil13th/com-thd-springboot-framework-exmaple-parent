@@ -118,5 +118,23 @@ public class  CgTestController extends BasicController{
         return success(entity);
     }
 
+
+	/**
+	 * 批量更新
+	 * @return
+	 */
+	@GetMapping("/testUpdateBatch")
+	@ResponseBody
+	public Message testUpdateBatch() {
+		CgTestEntity entity = new CgTestEntity();
+		entity.setUserAge(99);
+
+		CgTestEntity queryCondition = new CgTestEntity();
+		queryCondition.setUserName("bbb");
+
+		this.cgTestService.updateBatch(entity,queryCondition);
+		return success();
+	}
+
 }
 

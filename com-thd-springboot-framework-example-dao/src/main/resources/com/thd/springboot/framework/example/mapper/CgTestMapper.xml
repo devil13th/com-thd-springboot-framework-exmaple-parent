@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thd.springboot.framework.example.mapper.CgTestMapper">
-		<!-- Result Map -->
-    	<resultMap id="ResultMap" type="com.thd.springboot.framework.example.entity.CgTestEntity">
-    		<result column="user_id" property="userId" />
-    		<result column="user_name" property="userName" />
-    		<result column="user_age" property="userAge" />
-    		<result column="user_birthday" property="userBirthday" />
-    		<result column="create_by" property="createBy" />
-    		<result column="create_time" property="createTime" />
-    		<result column="modify_by" property="modifyBy" />
-    		<result column="modify_time" property="modifyTime" />
-    		<result column="is_deleted" property="isDeleted" />
-    	</resultMap>
+    <!-- Result Map -->
+    <resultMap id="ResultMap" type="com.thd.springboot.framework.example.entity.CgTestEntity">
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_age" property="userAge" />
+        <result column="user_birthday" property="userBirthday" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="modify_by" property="modifyBy" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
 
     <!-- 表名 -->
     <sql id="table_name">
-            cg_test
+        cg_test
     </sql>
 
-	<!-- 所有字段 -->
-	<sql id="column_list">
+    <!-- 所有字段 -->
+    <sql id="column_list">
         cg_test.`user_id`, <!-- 0 主键 -->
         cg_test.`user_name`, <!-- 1 姓名 -->
         cg_test.`user_age`, <!-- 2 年龄 -->
@@ -32,72 +32,72 @@
         cg_test.`modify_by`, <!-- 6  -->
         cg_test.`modify_time`, <!-- 7  -->
         cg_test.`is_deleted` <!-- 8  -->
-	</sql>
+    </sql>
 
-	<!-- 查询条件 -->
-	<sql id="where_eq">
-		where is_deleted = 0
-			<if test="userId != null ">
-                and cg_test.`user_id` = #{userId}
-            </if>
-            <if test="userName != null ">
-                and cg_test.`user_name` = #{userName}
-            </if>
-            <if test="userAge != null ">
-                and cg_test.`user_age` = #{userAge}
-            </if>
-            <if test="userBirthday != null ">
-                and cg_test.`user_birthday` = #{userBirthday}
-            </if>
-	</sql>
-
-	<!-- like查询条件 -->
-	<sql id="where_like">
-		where is_deleted = 0
+    <!-- 查询条件 -->
+    <sql id="where_eq">
+        where is_deleted = 0
         <if test="userId != null ">
-                and cg_test.`user_id` like #{userId}
-            </if>
-            <if test="userName != null ">
-                and cg_test.`user_name` like concat('%', #{userName},'%')
-            </if>
-            <if test="userAge != null ">
-                and cg_test.`user_age` like concat('%', #{userAge},'%')
-            </if>
-            <if test="userBirthday != null ">
-                and cg_test.`user_birthday` = #{userBirthday}
-            </if>
-	</sql>
+            and cg_test.`user_id` = #{userId}
+        </if>
+        <if test="userName != null ">
+            and cg_test.`user_name` = #{userName}
+        </if>
+        <if test="userAge != null ">
+            and cg_test.`user_age` = #{userAge}
+        </if>
+        <if test="userBirthday != null ">
+            and cg_test.`user_birthday` = #{userBirthday}
+        </if>
+    </sql>
 
-	<!-- 插入记录 -->
-	<insert id="insert" parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
-	    insert into <include refid="table_name"/> (
-	    `user_id`,
-            `user_name`,
-            `user_age`,
-            `user_birthday`,
-            `create_by`,
-            `create_time`,
-            `modify_by`,
-            `modify_time`,
-            `is_deleted`
+    <!-- like查询条件 -->
+    <sql id="where_like">
+        where is_deleted = 0
+        <if test="userId != null ">
+            and cg_test.`user_id` like #{userId}
+        </if>
+        <if test="userName != null and userName != '' ">
+            and cg_test.`user_name` like concat('%',#{userName},'%')
+        </if>
+        <if test="userAge != null ">
+            and cg_test.`user_age` = #{userAge}
+        </if>
+        <if test="userBirthday != null ">
+            and cg_test.`user_birthday` = #{userBirthday}
+        </if>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        insert into <include refid="table_name"/> (
+        `user_id`,
+        `user_name`,
+        `user_age`,
+        `user_birthday`,
+        `create_by`,
+        `create_time`,
+        `modify_by`,
+        `modify_time`,
+        `is_deleted`
         )
         values(
         #{userId},
-            #{userName},
-            #{userAge},
-            #{userBirthday},
-            #{createBy},
-            #{createTime},
-            #{modifyBy},
-            #{modifyTime},
-            #{isDeleted}
+        #{userName},
+        #{userAge},
+        #{userBirthday},
+        #{createBy},
+        #{createTime},
+        #{modifyBy},
+        #{modifyTime},
+        #{isDeleted}
         )
-	</insert>
+    </insert>
 
-	<!-- 根据id，修改记录 -->
-	<update id="update" parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
-		update <include refid="table_name"/> set
-	    <trim  suffixOverrides="," >
+    <!-- 根据id，修改记录 -->
+    <update id="update" parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        update <include refid="table_name"/> set
+        <trim  suffixOverrides="," >
             <if test="userId != null ">
                 `user_id`=#{userId},
             </if>
@@ -127,10 +127,67 @@
             </if>
         </trim>
         where `user_id`=#{userId}
-	</update>
+    </update>
 
+    <!-- 批量修改记录 -->
+    <update id="updateBatch" >
+        update <include refid="table_name"/> set
+        <trim  suffixOverrides="," >
+            <if test="targetBean.userName != null ">
+                `user_name`=#{targetBean.userName},
+            </if>
+            <if test="targetBean.userAge != null ">
+                `user_age`=#{targetBean.userAge},
+            </if>
+            <if test="targetBean.userBirthday != null ">
+                `user_birthday`=#{targetBean.userBirthday},
+            </if>
+            <if test="targetBean.createBy != null ">
+                `create_by`=#{targetBean.createBy},
+            </if>
+            <if test="targetBean.createTime != null ">
+                `create_time`=#{targetBean.createTime},
+            </if>
+            <if test="targetBean.modifyBy != null ">
+                `modify_by`=#{targetBean.modifyBy},
+            </if>
+            <if test="targetBean.modifyTime != null ">
+                `modify_time`=#{targetBean.modifyTime},
+            </if>
+            <if test="targetBean.isDeleted != null ">
+                `is_deleted`=#{targetBean.isDeleted},
+            </if>
+        </trim>
+        where
+        is_deleted = 0
+        <if test="conditionBean.userName != null ">
+            and `user_name`=#{conditionBean.userName}
+        </if>
+        <if test="conditionBean.userAge != null ">
+            and `user_age`=#{conditionBean.userAge}
+        </if>
+        <if test="conditionBean.userBirthday != null ">
+            and `user_birthday`=#{conditionBean.userBirthday}
+        </if>
+        <if test="conditionBean.createBy != null ">
+            and `create_by`=#{conditionBean.createBy}
+        </if>
+        <if test="conditionBean.createTime != null ">
+            and `create_time`=#{conditionBean.createTime}
+        </if>
+        <if test="conditionBean.modifyBy != null ">
+            and `modify_by`=#{conditionBean.modifyBy}
+        </if>
+        <if test="conditionBean.modifyTime != null ">
+            and `modify_time`=#{conditionBean.modifyTime}
+        </if>
+        <if test="conditionBean.isDeleted != null ">
+            and `is_deleted`=#{conditionBean.isDeleted}
+        </if>
+        and 1=1
+    </update>
 
-	 <delete id="deletePhysics" parameterType="String">
+    <delete id="deletePhysics" parameterType="String">
         delete from <include refid="table_name"/> where `user_id` = #{userId}
     </delete>
 
@@ -145,10 +202,10 @@
 
 
 
-	<!-- 根据id查询 -->
-	<select id="queryById" resultMap="ResultMap" parameterType="String">
-		select <include refid="column_list" /> from <include refid="table_name"/> where is_deleted=0 and `user_id` = #{userId}
-	</select>
+    <!-- 根据id查询 -->
+    <select id="queryById" resultMap="ResultMap" parameterType="String">
+        select <include refid="column_list" /> from <include refid="table_name"/> where is_deleted=0 and `user_id` = #{userId}
+    </select>
 
     <!-- 根据条件查询唯一一条数据 -->
     <select id="queryByCondition" resultMap="ResultMap" parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
@@ -159,24 +216,24 @@
         <include refid="where_eq" />
     </select>
 
-	<!-- 查询列表 -->
-	<select id="queryListEq" resultMap="ResultMap"
-		parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
-		select
+    <!-- 查询列表 -->
+    <select id="queryListEq" resultMap="ResultMap"
+            parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        select
         <include refid="column_list" />
         from <include refid="table_name"/>
         <include refid="where_eq" />
-         <!--
-        <if test="orderBy != null and orderBy != ''">
-         order by #{orderBy}
-        </if>
-        -->
-	</select>
+        <!--
+       <if test="orderBy != null and orderBy != ''">
+        order by #{orderBy}
+       </if>
+       -->
+    </select>
 
-	<!-- 查询列表 -->
-	<select id="queryListLike" resultMap="ResultMap"
-		parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
-		select
+    <!-- 查询列表 -->
+    <select id="queryListLike" resultMap="ResultMap"
+            parameterType="com.thd.springboot.framework.example.entity.CgTestEntity">
+        select
         <include refid="column_list" />
         from <include refid="table_name"/>
         <include refid="where_like" />
@@ -185,7 +242,7 @@
          order by  #{orderBy}
         </if>
         -->
-	</select>
+    </select>
 
     <!-- 查询列表 返回map-->
     <select id="queryAllToMapKey" resultType="com.thd.springboot.framework.example.entity.CgTestEntity">
@@ -199,28 +256,28 @@
     <insert id="insertBatch" >
         insert into <include refid="table_name"/>
         (
-	    user_id,
-           user_name,
-           user_age,
-           user_birthday,
-           create_by,
-           create_time,
-           modify_by,
-           modify_time,
-           is_deleted
+        user_id,
+        user_name,
+        user_age,
+        user_birthday,
+        create_by,
+        create_time,
+        modify_by,
+        modify_time,
+        is_deleted
         )
         values
         <foreach collection="list" item="r" index="index" separator=",">
             (
-		#{r.userId},
-                #{r.userName},
-                #{r.userAge},
-                #{r.userBirthday},
-                #{r.createBy},
-                #{r.createTime},
-                #{r.modifyBy},
-                #{r.modifyTime},
-                #{r.isDeleted}
+            #{r.userId},
+            #{r.userName},
+            #{r.userAge},
+            #{r.userBirthday},
+            #{r.createBy},
+            #{r.createTime},
+            #{r.modifyBy},
+            #{r.modifyTime},
+            #{r.isDeleted}
             )
         </foreach>
     </insert>
