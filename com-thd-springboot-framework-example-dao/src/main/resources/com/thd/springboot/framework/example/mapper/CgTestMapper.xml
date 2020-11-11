@@ -37,10 +37,12 @@
     <!-- 查询条件 -->
     <sql id="where_eq">
         where is_deleted = 0
-        <if test="userId != null ">
+
+
+        <if test="userId != null and userId != '' ">
             and cg_test.`user_id` = #{userId}
         </if>
-        <if test="userName != null ">
+        <if test="userName != null and userName != '' ">
             and cg_test.`user_name` = #{userName}
         </if>
         <if test="userAge != null ">
@@ -54,8 +56,8 @@
     <!-- like查询条件 -->
     <sql id="where_like">
         where is_deleted = 0
-        <if test="userId != null ">
-            and cg_test.`user_id` like #{userId}
+        <if test="userId != null and userId != '' ">
+            and cg_test.`user_id` like concat('%',#{userId},'%')
         </if>
         <if test="userName != null and userName != '' ">
             and cg_test.`user_name` like concat('%',#{userName},'%')
@@ -184,7 +186,6 @@
         <if test="conditionBean.isDeleted != null ">
             and `is_deleted`=#{conditionBean.isDeleted}
         </if>
-        and 1=1
     </update>
 
     <delete id="deletePhysics" parameterType="String">

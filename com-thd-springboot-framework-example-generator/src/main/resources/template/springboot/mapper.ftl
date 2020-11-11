@@ -31,9 +31,21 @@
 	<!-- 查询条件 -->
 	<sql id="where_eq">
 		where is_deleted = 0
-			<if test="${table.pkColumn.nameCamel} != null ">
-                and ${table.name}.`${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
-            </if>
+
+
+		 <#if table.pkColumn.dataType=="java.lang.String" || table.pkColumn.dataType=="String">
+         <if test="${table.pkColumn.nameCamel} != null and ${table.pkColumn.nameCamel} != '' ">
+             and ${table.name}.`${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
+         </if>
+         <#else>
+         <if test="${table.pkColumn.nameCamel} != null ">
+          and ${table.name}.`${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
+         </if>
+         </#if>
+
+
+
+
         <#list table.normalColumns as col>
             <#if col.name!="is_deleted" &&
                 col.name!="create_by" &&
@@ -41,7 +53,7 @@
                 col.name!="create_time" &&
                 col.name!="modify_time"
             >
-            <#if col.dataType=="java.lang.String">
+            <#if col.dataType=="java.lang.String" || col.dataType=="String">
             <if test="${col.nameCamel} != null and ${col.nameCamel} != '' ">
                 and ${table.name}.`${col.name}` = ${get}${col.nameCamel}}
             </if>
@@ -61,9 +73,23 @@
 	<!-- like查询条件 -->
 	<sql id="where_like">
 		where is_deleted = 0
-        <if test="${table.pkColumn.nameCamel} != null ">
-                and ${table.name}.`${table.pkColumn.name}` like ${get}${table.pkColumn.nameCamel}}
-            </if>
+
+
+
+
+         <#if table.pkColumn.dataType=="java.lang.String" || table.pkColumn.dataType=="String">
+                 <if test="${table.pkColumn.nameCamel} != null and ${table.pkColumn.nameCamel} != '' ">
+                     and ${table.name}.`${table.pkColumn.name}` like concat('%',${get}${table.pkColumn.nameCamel}},'%')
+                 </if>
+                 <#else>
+                 <if test="${table.pkColumn.nameCamel} != null ">
+                     and ${table.name}.`${table.pkColumn.name}` = ${get}${table.pkColumn.nameCamel}}
+                 </if>
+                 </#if>
+
+
+
+
         <#list table.normalColumns as col>
             <#if col.name!="is_deleted" &&
                 col.name!="create_by" &&
@@ -71,7 +97,7 @@
                 col.name!="create_time" &&
                 col.name!="modify_time"
             >
-            <#if col.dataType=="String">
+            <#if col.dataType=="java.lang.String" || col.dataType=="String">
             <if test="${col.nameCamel} != null and ${col.nameCamel} != '' ">
                 and ${table.name}.`${col.name}` like concat('%',${get}${col.nameCamel}},'%')
             </if>
