@@ -178,6 +178,18 @@
         <include refid="where_eq" />
     </update>
 
+    <update id="deleteLogicByIds" parameterType="${table.pkColumn.dataType}">
+        update <include refid="table_name"/> set is_deleted=1
+        where
+        `${table.pkColumn.name}` in (
+        <foreach collection="ids" item="r" index="index" separator=",">
+            ${get}r}
+        </foreach>
+        )
+    </update>
+
+
+
 
 
 	<!-- 根据id查询 -->
