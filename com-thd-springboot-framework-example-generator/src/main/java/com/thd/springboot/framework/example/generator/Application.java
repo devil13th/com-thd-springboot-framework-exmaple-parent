@@ -65,16 +65,16 @@ public class Application {
 
 
         //==============================  方法3  直接生成所有代码(entity dao mapper service controller... )
-        MakeCode mc = ctx.getBean(MakeCode.class);
-        mc.markCode("cg_test");
+//        MakeCode mc = ctx.getBean(MakeCode.class);
+//        mc.markCode("cg_test");
 
 
 
 
         //==============================  方法2 java -jar 的方式调用生成代码
 
-//        MakeCode mc = ctx.getBean(MakeCode.class);
-//        mc.makeCodeByJavaJar(args);
+        MakeCode mc = ctx.getBean(MakeCode.class);
+        mc.makeCodeByJavaJar(args);
 
         /*
         example:

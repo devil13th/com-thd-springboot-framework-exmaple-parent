@@ -1,0 +1,11 @@
+---- 前后端
+java -jar com-thd-springboot-framework-example-generator-1.0.0-SNAPSHOT.jar qmp_dic_ll entity.ftl ${table.nameBigCamel}Entity.java entityParent.ftl ${table.nameBigCamel}EntityParent.java mapper.ftl ${table.nameBigCamel}Mapper.xml dao.ftl ${table.nameBigCamel}Mapper.java service.ftl ${table.nameBigCamel}Service.java serviceImpl.ftl ${table.nameBigCamel}ServiceImpl.java controller.ftl ${table.nameBigCamel}Controller.java example.ftl example.txt viewList.ftl ${table.nameBigCamel}List.vue viewForm.ftl ${table.nameBigCamel}Form.vue viewApi.ftl ${table.nameBigCamel}Api.js viewOther.ftl ${table.nameBigCamel}Other.js
+
+
+
+
+---- 后端
+java -jar com-thd-springboot-framework-example-generator-1.0.0-SNAPSHOT.jar incident_comments entity.ftl ${table.nameBigCamel}Entity.java entityParent.ftl ${table.nameBigCamel}EntityParent.java mapper.ftl ${table.nameBigCamel}Mapper.xml dao.ftl ${table.nameBigCamel}Mapper.java service.ftl ${table.nameBigCamel}Service.java serviceImpl.ftl ${table.nameBigCamel}ServiceImpl.java controller.ftl ${table.nameBigCamel}Controller.java example.ftl example.txt 
+
+---- 后端 mapper
+java -jar com-thd-springboot-framework-example-generator-1.0.0-SNAPSHOT.jar qmp_risk_parts mapper.ftl ${table.nameBigCamel}Mapper.xml
