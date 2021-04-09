@@ -18,7 +18,7 @@ dbType: mysql
 schema: devil13th_pm
 # 模板公共路径
 #templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-parent\com-thd-springboot-framework-generator\src\main\resources\template\springboot\
-templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-exmaple-parent\com-thd-springboot-framework-example-generator\src\main\resources\template\springboot\
+templateFolderPath: D:\devil13th\github\com-thd-springboot-framework-exmaple-parent\com-thd-springboot-framework-example-generator\src\main\resources\template\springbootproject\
 #  生成文件公共路径
 targetFolderPath: D:\deleteme\cg\
 # 包配置

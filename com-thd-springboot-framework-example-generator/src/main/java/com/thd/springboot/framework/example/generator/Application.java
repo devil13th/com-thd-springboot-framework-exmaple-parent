@@ -47,14 +47,14 @@ public class Application {
 
         //==============================  方法1  直接调用 cg.createCode()方法生成代码
 
-//        cg.createCode("cg_example","example.ftl","example.txt");
-//        cg.createCode("cg_example","mapper.ftl","CgExampleMapper.xml");
-//        cg.createCode("cg_example","entity.ftl","CgExampleEntity.java");
-//        cg.createCode("cg_example","entityParent.ftl","CgExampleEntityParent.java");
-//        cg.createCode("cg_example","dao.ftl","CgExampleMapper.java");
-//        cg.createCode("cg_example","serviceImpl.ftl","CgExampleServiceImpl.java");
-//        cg.createCode("cg_example","service.ftl","CgExampleService.java");
-//        cg.createCode("cg_example","controller.ftl","CgExampleController.java");
+//        cg.createCode("note","example.ftl","example.txt");
+//        cg.createCode("note","mapper.ftl","CgExampleMapper.xml");
+//        cg.createCode("note","entity.ftl","CgExampleEntity.java");
+//        cg.createCode("note","entityParent.ftl","CgExampleEntityParent.java");
+//        cg.createCode("note","dao.ftl","CgExampleMapper.java");
+//        cg.createCode("note","serviceImpl.ftl","CgExampleServiceImpl.java");
+//        cg.createCode("note","service.ftl","CgExampleService.java");
+//        cg.createCode("note","controller.ftl","CgExampleController.java");
 
 //        cg.createCode("t_painting_actual_input_output","entityParent.ftl","${table.nameBigCamel}ParentEntity.java");
 //        cg.createCode("t_painting_actual_input_output","controller.ftl","AController.java");
@@ -65,16 +65,18 @@ public class Application {
 
 
         //==============================  方法3  直接生成所有代码(entity dao mapper service controller... )
-//        MakeCode mc = ctx.getBean(MakeCode.class);
+        MakeCode mc = ctx.getBean(MakeCode.class);
 //        mc.markCode("cg_test");
+        mc.markCode("my_plan");
+
 
 
 
 
         //==============================  方法2 java -jar 的方式调用生成代码
 
-        MakeCode mc = ctx.getBean(MakeCode.class);
-        mc.makeCodeByJavaJar(args);
+//        MakeCode mc = ctx.getBean(MakeCode.class);
+//        mc.makeCodeByJavaJar(args);
 
         /*
         example:

@@ -30,6 +30,13 @@ public class MakeCode {
         util.createCode(tableName,"service.ftl","${table.nameBigCamel}Service.java");
         util.createCode(tableName,"serviceImpl.ftl","${table.nameBigCamel}ServiceImpl.java");
         util.createCode(tableName,"controller.ftl","${table.nameBigCamel}Controller.java");
+
+        util.createCode(tableName,"reactList.ftl","${table.nameBigCamel}List.jsx");
+        util.createCode(tableName,"reactAPI.ftl","${table.nameBigCamel}Api.js");
+        util.createCode(tableName,"reactForm.ftl","${table.nameBigCamel}Form.jsx");
+        util.createCode(tableName,"reactView.ftl","${table.nameBigCamel}View.jsx");
+
+
 //        util.createCode(tableName,"viewList.ftl","${table.nameBigCamel}List.vue");
 //        util.createCode(tableName,"viewForm.ftl","${table.nameBigCamel}Form.vue");
 //        util.createCode(tableName,"viewApi.ftl","${table.nameBigCamel}Api.js");
