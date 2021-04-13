@@ -483,7 +483,7 @@ class ${table.nameBigCamel}List extends React.Component {
         style={{
           background: "#ecf0f5",
           borderRadius: 3,
-          padding: 12,
+          padding: 8,
         }}
       >
         <div className="block">
@@ -511,13 +511,13 @@ class ${table.nameBigCamel}List extends React.Component {
             justifyContent: "flex-start",
             background: "#ecf0f5",
             borderRadius: 3,
-            padding: 4,
+            padding: 8,
           }}
         >
           {this.state.tabData.length > 0 ? (
             this.state.tabData.map((item) => {
               return (
-                <div style={{ flex: "0 0 20%", padding: 8 }} key={item.${table.pkColumn.nameCamel}}>
+                <div style={{ flex: "0 0 20%", padding: '0px 8px 8px 0px' }} key={item.${table.pkColumn.nameCamel}}>
                   <div className="block">
 
 
