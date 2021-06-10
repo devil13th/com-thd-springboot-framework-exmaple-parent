@@ -3,6 +3,8 @@
 <#assign listEnd="</#list>" />
 <#assign ifStart="<#if " />
 <#assign ifEnd="</#if> " />
+<#assign elseifStart="<#elseif  " />
+<#assign else="<#else>" />
 ===========  DB信息  ==========
 ${get}dbType}   ${dbType}
 ===========  表信息  ==========
@@ -73,11 +75,19 @@ ${listStart} table.normalColumns as col>
     ${ifEnd}
 ${listEnd}
 --------------------------------------
-<#list table.normalColumns as col>
-    @TableField("${col.name}")
-    <#if  col.dbDataType=="date">
+${listStart} table.normalColumns as col>
+    @TableField("${get}col.name}")
+    ${ifStart} col.dbDataType=="date">
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    </#if>
-    private ${col.dataType} ${col.nameCamel};
-    <#if  col_has_next> // 还有下次循环 </#if>
-</#list>
+    ${ifEnd}
+    private ${get}col.dataType} ${get}col.nameCamel};
+    ${ifStart} col_has_next> // 还有下次循环 ${ifEnd}
+${listEnd}
+--------------------------------------
+${listStart} table.normalColumns as col>
+${ifStart} col.dataType=="Date" >
+${elseifStart} col.dataType=="String" >
+${elseifStart} col.dataType=="Integer" || col.dataType=="Float" || col.dataType=="Double" >
+${else}
+${ifEnd}
+${listEnd}

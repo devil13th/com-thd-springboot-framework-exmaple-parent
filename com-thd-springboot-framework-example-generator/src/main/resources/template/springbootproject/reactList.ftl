@@ -194,8 +194,6 @@ class ${table.nameBigCamel}List extends React.Component {
           current: 1,
         },
       });
-    } else {
-      currentPage = this.state.tabPagination.current;
     }
 
     let queryCondition = this.state.queryCondition;
